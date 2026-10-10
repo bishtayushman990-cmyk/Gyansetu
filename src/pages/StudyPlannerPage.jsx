@@ -149,16 +149,13 @@ export default function StudyPlannerPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Header Banner */}
-      <div style={{
-        backgroundColor: 'var(--bg-secondary)',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+      <div className="card" style={{
+        padding: 'clamp(18px, 4vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '20px'
+        gap: '16px'
       }}>
         <div>
           <div style={{
@@ -257,15 +254,16 @@ export default function StudyPlannerPage() {
                   key={task.id}
                   className="card"
                   style={{
-                    padding: '14px 20px',
+                    padding: '14px 18px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '16px',
+                    flexWrap: 'wrap',
+                    gap: '12px',
                     opacity: task.completed ? 0.65 : 1
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: '1 1 240px', minWidth: 0 }}>
                     <button
                       onClick={() => handleToggleTask(task.id, task.completed)}
                       style={{ color: task.completed ? 'var(--status-success)' : 'var(--text-muted)', cursor: 'pointer' }}
@@ -405,7 +403,7 @@ export default function StudyPlannerPage() {
                 />
               </div>
 
-              <div className="grid-2">
+              <div className="grid-responsive-2">
                 <div>
                   <label style={{ display: 'block', fontSize: '0.84rem', fontWeight: 600, marginBottom: '6px' }}>
                     Duration (Minutes)

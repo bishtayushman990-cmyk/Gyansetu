@@ -129,13 +129,13 @@ export default function AIStudyBuddyPage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', height: 'calc(100vh - 120px)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', minHeight: 'calc(100dvh - 120px)' }}>
       {/* Top Header */}
       <div style={{
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '18px 24px',
+        padding: 'clamp(14px, 3vw, 18px) clamp(14px, 3.5vw, 24px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -153,12 +153,13 @@ export default function AIStudyBuddyPage() {
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
+            flexShrink: 0,
             boxShadow: '0 4px 12px rgba(6, 182, 212, 0.3)'
           }}>
             <Sparkles size={22} />
           </div>
           <div>
-            <h1 style={{ fontSize: '1.4rem', fontWeight: 800 }}>AI Study Buddy</h1>
+            <h1 style={{ fontSize: 'clamp(1.2rem, 3.5vw, 1.4rem)', fontWeight: 800 }}>AI Study Buddy</h1>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               Interactive placement tutor • 9-point code breakdown & multi-turn memory
             </p>
@@ -204,27 +205,27 @@ export default function AIStudyBuddyPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '24px',
+        padding: 'clamp(14px, 3vw, 24px)',
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px'
+        gap: '16px'
       }}>
         {messages.map(msg => (
           <div
             key={msg.id}
             style={{
               display: 'flex',
-              gap: '14px',
+              gap: '12px',
               alignItems: 'flex-start',
               alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-              maxWidth: '85%'
+              maxWidth: 'min(92%, 760px)'
             }}
           >
             {msg.sender === 'ai' && (
               <div style={{
-                width: '34px',
-                height: '34px',
+                width: '32px',
+                height: '32px',
                 borderRadius: '50%',
                 background: 'linear-gradient(135deg, #06b6d4, #2563eb)',
                 display: 'flex',
@@ -234,7 +235,7 @@ export default function AIStudyBuddyPage() {
                 flexShrink: 0,
                 marginTop: '4px'
               }}>
-                <Bot size={18} />
+                <Bot size={16} />
               </div>
             )}
 
@@ -243,10 +244,12 @@ export default function AIStudyBuddyPage() {
               color: msg.sender === 'user' ? '#ffffff' : 'var(--text-primary)',
               border: msg.sender === 'user' ? 'none' : '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-lg)',
-              padding: '16px 20px',
+              padding: '12px clamp(12px, 3vw, 20px)',
               fontSize: '0.92rem',
               lineHeight: 1.6,
-              boxShadow: 'var(--shadow-sm)'
+              boxShadow: 'var(--shadow-sm)',
+              wordBreak: 'break-word',
+              overflowWrap: 'anywhere'
             }}>
               <div style={{ whiteSpace: 'pre-wrap' }}>
                 {msg.text}
@@ -261,7 +264,9 @@ export default function AIStudyBuddyPage() {
                   borderTop: '1px solid var(--border-subtle)',
                   display: 'flex',
                   justifyContent: 'space-between',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '4px'
                 }}>
                   <span>Source: {msg.provider}</span>
                   {msg.isLiveAI && <span style={{ color: 'var(--status-success)' }}>● Live Gemini AI</span>}
@@ -271,8 +276,8 @@ export default function AIStudyBuddyPage() {
 
             {msg.sender === 'user' && (
               <div style={{
-                width: '34px',
-                height: '34px',
+                width: '32px',
+                height: '32px',
                 borderRadius: '50%',
                 background: 'var(--brand-violet)',
                 display: 'flex',
@@ -282,15 +287,15 @@ export default function AIStudyBuddyPage() {
                 flexShrink: 0,
                 marginTop: '4px'
               }}>
-                <User size={18} />
+                <User size={16} />
               </div>
             )}
           </div>
         ))}
 
         {loading && (
-          <div style={{ display: 'flex', gap: '14px', alignItems: 'center', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
-            <Bot size={20} color="var(--brand-cyan)" />
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+            <Bot size={18} color="var(--brand-cyan)" />
             <span>AI Study Buddy is analyzing code and preparing explanation...</span>
           </div>
         )}
@@ -298,7 +303,7 @@ export default function AIStudyBuddyPage() {
       </div>
 
       {/* Quick Prompts Bar */}
-      <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '2px' }}>
+      <div className="horizontal-scroll-row" style={{ display: 'flex', gap: '8px', paddingBottom: '2px' }}>
         {quickPrompts.map((p, idx) => (
           <button
             key={idx}
@@ -363,13 +368,14 @@ export default function AIStudyBuddyPage() {
         onSubmit={(e) => { e.preventDefault(); handleSend(); }}
         style={{
           display: 'flex',
-          gap: '10px',
+          gap: '8px',
           backgroundColor: 'var(--bg-secondary)',
           border: '1px solid var(--border-subtle)',
           borderRadius: 'var(--radius-lg)',
           padding: '8px 12px',
           boxShadow: 'var(--shadow-md)',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap'
         }}
       >
         <button
@@ -377,18 +383,20 @@ export default function AIStudyBuddyPage() {
           onClick={() => setShowCodeBox(!showCodeBox)}
           className={`btn btn-sm ${showCodeBox ? 'btn-primary' : 'btn-secondary'}`}
           title="Paste code solution"
+          style={{ whiteSpace: 'nowrap' }}
         >
           <Code2 size={15} /> Paste Code
         </button>
 
         <input
           type="text"
-          placeholder={showCodeBox ? "Add optional question/instructions for this code..." : "Ask a question, follow-up (e.g. 'explain line 5'), or request a dry run..."}
+          placeholder={showCodeBox ? "Add optional question/instructions for this code..." : "Ask a question, follow-up (e.g. 'explain line 5')..."}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           disabled={loading}
           style={{
-            flex: 1,
+            flex: '1 1 180px',
+            minWidth: '140px',
             backgroundColor: 'transparent',
             border: 'none',
             outline: 'none',
@@ -402,6 +410,7 @@ export default function AIStudyBuddyPage() {
           type="submit"
           disabled={loading || (!input.trim() && !pastedCode.trim())}
           className="btn btn-primary"
+          style={{ marginLeft: 'auto' }}
         >
           <Send size={16} /> Send
         </button>

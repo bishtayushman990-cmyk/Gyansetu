@@ -30,15 +30,15 @@ export default function SettingsPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '24px 28px'
+        padding: 'clamp(18px, 3.5vw, 24px) clamp(16px, 4vw, 28px)'
       }}>
-        <h1 style={{ fontSize: '1.6rem', fontWeight: 800 }}>Account & Preferences</h1>
+        <h1 style={{ fontSize: 'clamp(1.3rem, 3.5vw, 1.6rem)', fontWeight: 800 }}>Account & Preferences</h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginTop: '4px' }}>
           Manage your placement target, daily study goal, theme mode, and profile.
         </p>
       </div>
 
-      <div className="card" style={{ padding: '28px' }}>
+      <div className="card" style={{ padding: 'clamp(16px, 3.5vw, 28px)' }}>
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
           <div className="grid-2">
             <div>
@@ -128,7 +128,7 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)', flexWrap: 'wrap', gap: '12px' }}>
             <button
               type="button"
               onClick={() => {

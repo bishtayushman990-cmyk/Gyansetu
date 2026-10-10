@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -6,6 +6,11 @@ import Topbar from './Topbar';
 export default function Layout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+
+  // Close mobile drawer whenever location changes
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   // Page titles map
   const pageTitles = {

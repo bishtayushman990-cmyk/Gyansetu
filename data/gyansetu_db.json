@@ -6589,6 +6589,265 @@
   ],
   "projects": [
     {
+      "id": "proj-imported-1791628643074",
+      "userId": "demo-user",
+      "title": "Gyansetu (Imported Project)",
+      "repoUrl": "https://github.com/bishtayushman990-cmyk/Gyansetu",
+      "description": "Full-stack web application featuring React SPA frontend, Node.js/Express 5 API server, Sandboxed VM execution runner, and atomic persistent data store.",
+      "techStack": "React 19, Vite, Express 5, Node.js, Sandboxed VM, Canvas Confetti, Lucide React, Google GenAI SDK",
+      "detectedLanguages": [
+        "JavaScript (ESM)",
+        "HTML5",
+        "CSS3 (Modern Custom Properties)",
+        "JSON"
+      ],
+      "detectedFrameworks": [
+        "React 19",
+        "Vite 6",
+        "Express 5"
+      ],
+      "dependencies": [
+        {
+          "name": "express",
+          "version": "^5.0.1",
+          "purpose": "Backend REST API server & static middleware"
+        },
+        {
+          "name": "react",
+          "version": "^19.0.0",
+          "purpose": "Reactive client-side SPA UI library"
+        },
+        {
+          "name": "vite",
+          "version": "^6.1.0",
+          "purpose": "Modern frontend build tool & dev server"
+        },
+        {
+          "name": "@google/genai",
+          "version": "^0.1.2",
+          "purpose": "Official Gemini AI SDK integration"
+        },
+        {
+          "name": "lucide-react",
+          "version": "^0.475.0",
+          "purpose": "Production icon system"
+        },
+        {
+          "name": "canvas-confetti",
+          "version": "^1.9.4",
+          "purpose": "Visual milestone celebration feedback"
+        }
+      ],
+      "folderStructure": [
+        {
+          "path": "src/",
+          "description": "React UI components, pages, design system tokens, context providers"
+        },
+        {
+          "path": "server/",
+          "description": "Express 5 API server, sandbox runner (practice.js), JSON database (db.js)"
+        },
+        {
+          "path": "data/",
+          "description": "Persistent database records (gyansetu_db.json)"
+        },
+        {
+          "path": "public/",
+          "description": "Static assets, favicon, logo image"
+        }
+      ],
+      "entryPoints": [
+        {
+          "file": "server/index.js",
+          "type": "Backend API Server Entry Point"
+        },
+        {
+          "file": "src/main.jsx",
+          "type": "React Client-Side SPA Mount Point"
+        },
+        {
+          "file": "index.html",
+          "type": "HTML Document Shell & Viewport Setup"
+        }
+      ],
+      "routesAndEndpoints": [
+        {
+          "method": "GET",
+          "path": "/api/questions",
+          "purpose": "Question bank retrieval with category/difficulty filters"
+        },
+        {
+          "method": "POST",
+          "path": "/api/practice/submit",
+          "purpose": "Code/MCQ execution, attempt logging, mistake memory hook"
+        },
+        {
+          "method": "GET",
+          "path": "/api/mistakes",
+          "purpose": "Mistake memory records and recurring pattern detection"
+        },
+        {
+          "method": "POST",
+          "path": "/api/ai/study-buddy",
+          "purpose": "Contextual AI tutor request flow with conversation history"
+        },
+        {
+          "method": "POST",
+          "path": "/api/communication/evaluate",
+          "purpose": "Communication Gym clarity coach evaluation"
+        },
+        {
+          "method": "POST",
+          "path": "/api/projects/import-repo",
+          "purpose": "Repository inspection and defense question generation"
+        }
+      ],
+      "databaseSchema": {
+        "engine": "Atomic File-backed JSON Database with Transactional Temp-Write Renaming",
+        "models": [
+          "users",
+          "questions",
+          "attempts",
+          "mistakes",
+          "studyTasks",
+          "communicationMemory",
+          "projects"
+        ]
+      },
+      "securityObservations": [
+        "Verified: Sandboxed VM code execution prevents unauthorized OS process exit and access to fs/child_process.",
+        "Verified: AI API keys and repository tokens are stored exclusively server-side in process.env, never leaked to the client bundle.",
+        "Verified: User authorization headers ('x-user-id') isolate student records."
+      ],
+      "scalabilityObservations": [
+        "Inference: For high-scale concurrent traffic, migrating from atomic file JSON writes to PostgreSQL with connection pooling will eliminate write lock bottlenecks.",
+        "Inference: Sandboxed code execution can be offloaded to isolated containerized worker microservices (e.g. AWS Lambda or Docker runners)."
+      ],
+      "architectureDiagram": {
+        "nodes": [
+          {
+            "id": "client",
+            "label": "Client Browser (React 19 SPA)",
+            "type": "frontend"
+          },
+          {
+            "id": "api",
+            "label": "Express 5 API Server",
+            "type": "backend"
+          },
+          {
+            "id": "sandbox",
+            "label": "Sandboxed VM Runner (Safe JS Execution)",
+            "type": "compute"
+          },
+          {
+            "id": "ai",
+            "label": "AI Integration Engine (Gemini API)",
+            "type": "external"
+          },
+          {
+            "id": "db",
+            "label": "Atomic Persistent Database (gyansetu_db.json)",
+            "type": "database"
+          }
+        ],
+        "connections": [
+          {
+            "from": "client",
+            "to": "api",
+            "label": "HTTP REST API Calls"
+          },
+          {
+            "from": "api",
+            "to": "sandbox",
+            "label": "Runs Code & Test Cases"
+          },
+          {
+            "from": "api",
+            "to": "ai",
+            "label": "Multi-turn Tutoring Requests"
+          },
+          {
+            "from": "api",
+            "to": "db",
+            "label": "Atomic Read/Write State"
+          }
+        ]
+      },
+      "defenseQuestions": [
+        {
+          "id": "def-1",
+          "category": "Architecture",
+          "question": "Explain your project architecture from frontend to backend.",
+          "expectation": "Detail how React components communicate via REST API to Express, how middleware handles routing, and how data persists atomically.",
+          "sampleAnswer": "Our frontend is a single-page application built with React 19 and Vite. When a user acts, the browser dispatches an authenticated HTTP request to our Express 5 backend server. The server routes the request through validation middleware, interacts with the sandboxed execution engine or AI engine, and saves state via atomic file transactions before returning JSON."
+        },
+        {
+          "id": "def-2",
+          "category": "Request Lifecycle",
+          "question": "Explain a request from frontend to backend when a student submits code.",
+          "expectation": "Trace: Client Code Editor -> POST /api/practice/submit -> AST/Keyword Sanitization -> Node VM Execution -> Test Suite Evaluation -> Mistake Memory Hook -> Atomic DB Save -> Synchronized Response.",
+          "sampleAnswer": "When the user clicks Submit, the frontend sends the code and question ID to POST /api/practice/submit. The server checks for restricted tokens, creates a sandboxed context, executes the code against hidden and sample test cases, generates diagnostic evidence if any test fails, updates Mistake Memory, commits the record atomically, and returns the result."
+        },
+        {
+          "id": "def-3",
+          "category": "API & Integrations",
+          "question": "Which APIs does your project use, and how are external service failures handled?",
+          "expectation": "Discuss Google Gemini AI integration, fallback to offline pedagogical engine if rate-limited or key missing, and REST endpoints.",
+          "sampleAnswer": "We integrate with the Google Gemini API for natural language tutoring. To ensure zero downtime, if the Gemini API is unreachable, times out, or lacks credentials, our backend gracefully falls back to an intelligent built-in pedagogical tutor engine without crashing or disrupting the student's study flow."
+        },
+        {
+          "id": "def-4",
+          "category": "Technology Selection",
+          "question": "Why were these technologies selected over alternatives?",
+          "expectation": "Explain React 19 for declarative UI performance, Vite for rapid HMR bundling, Express 5 for native Promise error handling, and Node.js VM for sandbox safety.",
+          "sampleAnswer": "We chose React 19 and Vite for instant hot-module reloading and responsive client rendering. Express 5 was selected for its robust native async route handling. Sandboxed Node.js VM provides safe execution isolation without the latency overhead of spinning up entire external Docker containers during real-time student submissions."
+        },
+        {
+          "id": "def-5",
+          "category": "Data Storage & Validation",
+          "question": "How is data stored and validated in your system?",
+          "expectation": "Explain the atomic write-rename pattern to prevent file corruption, and schema validation before saves.",
+          "sampleAnswer": "Data is persisted using an atomic file write strategy: records are written to a temporary file (`gyansetu_db.json.tmp`) and atomically renamed to `gyansetu_db.json`. This guarantees that unexpected server restarts never leave corrupted, half-written JSON files."
+        },
+        {
+          "id": "def-6",
+          "category": "Authentication & Security",
+          "question": "How does authentication work, and what security risks exist?",
+          "expectation": "Explain header-based identity isolation, sandboxing restricted tokens ('process.exit', 'child_process'), and server-side secret management.",
+          "sampleAnswer": "Student requests carry user identity headers verified by backend middleware. In code execution, we prohibit process escape vectors like `child_process`, `fs`, and `process.exit`. All API secrets and keys remain strictly in server environment variables, never bundled into client JavaScript."
+        },
+        {
+          "id": "def-7",
+          "category": "Failure Handling",
+          "question": "What happens when an API fails or the database experiences a write collision?",
+          "expectation": "Discuss graceful error boundaries, HTTP 500 error responses with user-friendly toast messages, and atomic rollback.",
+          "sampleAnswer": "If an execution fails or throws a compilation error, our backend catches the exception, structures it into diagnostic evidence with line numbers, and returns a clean 200/400 response with error details rather than crashing the Node process."
+        },
+        {
+          "id": "def-8",
+          "category": "Scalability",
+          "question": "How would you scale this system from 100 users to 100,000 active concurrent users?",
+          "expectation": "Discuss replacing the single-instance JSON store with PostgreSQL read replicas, Redis caching for hot questions, and containerized queue workers (BullMQ/RabbitMQ).",
+          "sampleAnswer": "To scale to 100,000 concurrent students, we would decouple code execution into an asynchronous queue with worker nodes, transition the storage layer to PostgreSQL with PgBouncer connection pooling, and cache static questions and roadmaps in Redis and CDN edge nodes."
+        },
+        {
+          "id": "def-9",
+          "category": "Personal Implementation",
+          "question": "What did you personally implement in this project?",
+          "expectation": "Highlight specific modules: Mistake Memory detective, 5-level hint ladder, Communication Gym, and full-stack integration.",
+          "sampleAnswer": "I personally engineered the Mistake Memory diagnostic pipeline that isolates exact code line numbers and failing test inputs, built the 5-level progressive hint ladder, implemented the Speech API clarity coach in Communication Gym, and connected synchronized XP and study planner updates across the entire full-stack app."
+        },
+        {
+          "id": "def-10",
+          "category": "Engineering Trade-offs",
+          "question": "What technical alternatives did you consider before deciding on this architecture?",
+          "expectation": "Discuss trade-offs between monolithic full-stack vs microservices, and immediate execution vs distributed queue.",
+          "sampleAnswer": "I evaluated using a distributed microservice architecture with Docker containers for code execution, but chose an integrated modular architecture with in-process VM sandboxing to eliminate deployment complexity and achieve sub-50ms execution latency for a seamless user experience."
+        }
+      ]
+    },
+    {
       "id": "proj-imported-1791624993781",
       "userId": "demo-user",
       "title": "Gyansetu (Imported Project)",

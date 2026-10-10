@@ -222,16 +222,18 @@ export default function QuestionWorkspacePage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '10px 16px',
+        padding: '10px 14px',
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
-        borderRadius: 'var(--radius-md)'
+        borderRadius: 'var(--radius-md)',
+        flexWrap: 'wrap',
+        gap: '10px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <button onClick={() => navigate('/practice')} className="icon-btn" style={{ width: '32px', height: '32px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', minWidth: 0 }}>
+          <button onClick={() => navigate('/practice')} className="icon-btn" style={{ width: '32px', height: '32px', flexShrink: 0 }}>
             <ChevronLeft size={16} />
           </button>
-          <span style={{ fontWeight: 800, fontSize: '1.05rem' }}>
+          <span style={{ fontWeight: 800, fontSize: '1rem', wordBreak: 'break-word' }}>
             {question.title}
           </span>
           <span className={`badge badge-${question.difficulty.toLowerCase()}`}>
@@ -242,7 +244,7 @@ export default function QuestionWorkspacePage() {
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           {/* Hint Ladder Trigger */}
           <button
             onClick={() => setIsHintModalOpen(true)}
@@ -486,11 +488,13 @@ export default function QuestionWorkspacePage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '8px 16px',
+              padding: '8px 12px',
               borderBottom: '1px solid var(--border-subtle)',
-              backgroundColor: 'var(--bg-tertiary)'
+              backgroundColor: 'var(--bg-tertiary)',
+              flexWrap: 'wrap',
+              gap: '8px'
             }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                 <button
                   onClick={() => setActiveTab('testcases')}
                   style={{

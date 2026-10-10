@@ -23,23 +23,11 @@ export default function LandingPage() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-primary)' }}>
       {/* Navigation Header */}
-      <header style={{
-        height: '76px',
-        borderBottom: '1px solid var(--border-subtle)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 40px',
-        position: 'sticky',
-        top: 0,
-        backgroundColor: 'var(--bg-secondary)',
-        zIndex: 50,
-        backdropFilter: 'blur(12px)'
-      }}>
+      <header className="landing-header">
         <BrandLogo size="default" showTagline={false} />
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <nav style={{ display: 'flex', gap: '20px', fontSize: '0.92rem', fontWeight: 600 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <nav className="landing-nav" style={{ display: 'flex', gap: '20px', fontSize: '0.92rem', fontWeight: 600 }}>
             <Link to="/practice" style={{ color: 'var(--text-secondary)' }}>Practice Lab</Link>
             <Link to="/mistakes" style={{ color: 'var(--text-secondary)' }}>Mistake Memory</Link>
             <Link to="/learn" style={{ color: 'var(--text-secondary)' }}>Learn Roadmaps</Link>
@@ -142,12 +130,7 @@ export default function LandingPage() {
             The GyaanSetu Learning Loop
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '12px',
-            alignItems: 'center'
-          }}>
+          <div className="learning-loop-grid">
             <div style={{ padding: '16px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-subtle)' }}>
               <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(37, 99, 235, 0.15)', color: 'var(--brand-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 10px' }}>
                 <Code2 size={18} />

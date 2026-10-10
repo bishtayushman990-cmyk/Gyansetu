@@ -133,7 +133,7 @@ export default function WeeklyTestPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 3.5vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -152,7 +152,7 @@ export default function WeeklyTestPage() {
           }}>
             <Timer size={16} /> TIMED CAMPUS ASSESSMENT SIMULATION
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             {test?.title || "Weekend Placement Mastery Assessment"}
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '680px' }}>
@@ -183,9 +183,9 @@ export default function WeeklyTestPage() {
 
       {/* State 1: Before Test Start */}
       {!started && !submitted && (
-        <div className="card" style={{ padding: '36px', textAlign: 'center', maxWidth: '680px', margin: '0 auto', width: '100%' }}>
+        <div className="card" style={{ padding: 'clamp(20px, 4vw, 36px)', textAlign: 'center', maxWidth: '680px', margin: '0 auto', width: '100%' }}>
           <ShieldCheck size={48} color="var(--brand-cyan)" style={{ margin: '0 auto 16px' }} />
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '8px' }}>
+          <h2 style={{ fontSize: 'clamp(1.25rem, 3.5vw, 1.5rem)', fontWeight: 800, marginBottom: '8px' }}>
             Assessment Rules & Guidelines
           </h2>
           <ul style={{ textAlign: 'left', margin: '20px auto', maxWidth: '480px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
@@ -205,8 +205,8 @@ export default function WeeklyTestPage() {
       {started && !submitted && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {test?.questions.map((q, idx) => (
-            <div key={q.id} className="card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div key={q.id} className="card" style={{ padding: 'clamp(16px, 3.5vw, 24px)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                 <span style={{ fontWeight: 800, fontSize: '1.05rem' }}>
                   Question {idx + 1} of {test.questions.length}: {q.title}
                 </span>
@@ -269,11 +269,11 @@ export default function WeeklyTestPage() {
       {/* State 3: Test Score Report */}
       {submitted && scoreReport && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div className="card" style={{ padding: '36px', textAlign: 'center' }}>
+          <div className="card" style={{ padding: 'clamp(20px, 4vw, 36px)', textAlign: 'center' }}>
             <Trophy size={48} color={scoreReport.percentage >= 60 ? 'var(--brand-gold)' : 'var(--status-error)'} style={{ margin: '0 auto 12px' }} />
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Assessment Score Report</h2>
+            <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: 800 }}>Assessment Score Report</h2>
             <div style={{
-              fontSize: '2.8rem',
+              fontSize: 'clamp(2.2rem, 5vw, 2.8rem)',
               fontWeight: 800,
               color: scoreReport.percentage >= 60 ? 'var(--status-success)' : 'var(--status-error)',
               marginTop: '8px'
@@ -284,7 +284,7 @@ export default function WeeklyTestPage() {
               You answered {scoreReport.correctCount} out of {scoreReport.totalQuestions} questions correctly.
             </p>
 
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', marginTop: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', marginTop: '24px', flexWrap: 'wrap' }}>
               <button onClick={() => navigate('/mistakes')} className="btn btn-primary">
                 <BrainCircuit size={16} /> Review Diagnosed Mistakes
               </button>

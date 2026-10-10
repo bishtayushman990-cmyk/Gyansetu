@@ -46,7 +46,7 @@ export default function SkillTreePage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 3.5vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -65,7 +65,7 @@ export default function SkillTreePage() {
           }}>
             <GitFork size={16} /> COMPETENCY DEPENDENCY GRAPH
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             Interactive Skill Tree
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '700px' }}>
@@ -86,7 +86,7 @@ export default function SkillTreePage() {
                 onClick={() => setSelectedNode(node)}
                 className="card card-interactive"
                 style={{
-                  padding: '18px 22px',
+                  padding: '16px clamp(14px, 3vw, 22px)',
                   cursor: 'pointer',
                   border: isSelected ? '2px solid var(--brand-cyan)' : undefined,
                   opacity: node.isUnlocked ? 1 : 0.6,
@@ -149,7 +149,7 @@ export default function SkillTreePage() {
         {/* Right: Selected Node Details & Action Plan */}
         <div>
           {selectedNode ? (
-            <div className="card" style={{ padding: '28px', position: 'sticky', top: '90px' }}>
+            <div className="card" style={{ padding: 'clamp(18px, 4vw, 28px)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--brand-cyan)', fontSize: '0.82rem', fontWeight: 700 }}>
                 <Sparkles size={16} /> NODE DETAILS & MILESTONES
               </div>
@@ -167,7 +167,9 @@ export default function SkillTreePage() {
                 backgroundColor: 'var(--bg-primary)',
                 border: '1px solid var(--border-subtle)',
                 display: 'flex',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '12px'
               }}>
                 <div>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>Requirement Status</div>

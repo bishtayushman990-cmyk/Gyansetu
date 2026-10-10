@@ -408,18 +408,15 @@ export default function PracticeLabPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Header Banner */}
-      <div style={{
-        backgroundColor: 'var(--bg-secondary)',
-        border: '1px solid var(--border-subtle)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+      <div className="card" style={{
+        padding: 'clamp(18px, 4vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '20px'
+        gap: '16px'
       }}>
-        <div>
+        <div style={{ flex: '1 1 280px', minWidth: 0 }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -431,15 +428,15 @@ export default function PracticeLabPage() {
           }}>
             <Code2 size={16} /> PRACTICE LAB WORKSPACE • PLACEMENT QUESTION BANK
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             Practice. Understand. Improve.
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '650px' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '650px', lineHeight: 1.5 }}>
             Sharpen algorithmic problem-solving, query logic, and CS fundamentals. Every failed attempt is automatically recorded and routed into Mistake Memory for timed recall.
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '6px' }}>
           <button
             onClick={() => navigate('/weekly-test')}
             className="btn btn-gold btn-sm"
@@ -545,13 +542,7 @@ export default function PracticeLabPage() {
       </div>
 
       {/* Additional Placement Category Quick Pills */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        overflowX: 'auto',
-        paddingBottom: '4px'
-      }}>
+      <div className="horizontal-scroll-row" style={{ alignItems: 'center' }}>
         <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
           CORE TOPICS:
         </span>
@@ -878,9 +869,10 @@ export default function PracticeLabPage() {
         flexDirection: 'column',
         gap: '16px'
       }}>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', width: '100%' }}>
           <div style={{
-            flex: '1 1 300px',
+            flex: '1 1 200px',
+            minWidth: 0,
             display: 'flex',
             alignItems: 'center',
             gap: '10px',
@@ -889,10 +881,10 @@ export default function PracticeLabPage() {
             borderRadius: 'var(--radius-md)',
             padding: '8px 14px'
           }}>
-            <Search size={18} color="var(--text-muted)" />
+            <Search size={18} color="var(--text-muted)" style={{ flexShrink: 0 }} />
             <input
               type="text"
-              placeholder="Search by title, topic, or keyword (e.g. 'Binary Search', 'Deadlock', 'SQL')..."
+              placeholder="Search by title, topic, or keyword..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{
@@ -901,7 +893,8 @@ export default function PracticeLabPage() {
                 border: 'none',
                 outline: 'none',
                 color: 'var(--text-primary)',
-                fontSize: '0.9rem'
+                fontSize: '0.9rem',
+                minWidth: 0
               }}
             />
           </div>
@@ -910,12 +903,14 @@ export default function PracticeLabPage() {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             style={{
-              padding: '8px 14px',
+              flex: '1 1 140px',
+              minWidth: 0,
+              padding: '8px 12px',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
               backgroundColor: 'var(--bg-primary)',
               color: 'var(--text-primary)',
-              fontSize: '0.88rem'
+              fontSize: '0.86rem'
             }}
           >
             {categories.map(c => <option key={c} value={c}>{c === 'All' ? 'All Subjects' : c}</option>)}
@@ -925,12 +920,14 @@ export default function PracticeLabPage() {
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value)}
             style={{
-              padding: '8px 14px',
+              flex: '1 1 120px',
+              minWidth: 0,
+              padding: '8px 12px',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
               backgroundColor: 'var(--bg-primary)',
               color: 'var(--text-primary)',
-              fontSize: '0.88rem'
+              fontSize: '0.86rem'
             }}
           >
             {difficulties.map(d => <option key={d} value={d}>{d === 'All' ? 'All Difficulties' : d}</option>)}
@@ -940,12 +937,14 @@ export default function PracticeLabPage() {
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             style={{
-              padding: '8px 14px',
+              flex: '1 1 120px',
+              minWidth: 0,
+              padding: '8px 12px',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
               backgroundColor: 'var(--bg-primary)',
               color: 'var(--text-primary)',
-              fontSize: '0.88rem'
+              fontSize: '0.86rem'
             }}
           >
             {statuses.map(s => <option key={s} value={s}>{s === 'All' ? 'All Statuses' : s}</option>)}
@@ -1005,19 +1004,20 @@ export default function PracticeLabPage() {
                   key={q.id}
                   onClick={() => navigate(`/practice/${q.id}`)}
                   style={{
-                    padding: '16px 20px',
+                    padding: '14px 16px',
                     borderBottom: idx !== questions.length - 1 ? '1px solid var(--border-subtle)' : 'none',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '16px',
+                    flexWrap: 'wrap',
+                    gap: '12px',
                     cursor: 'pointer',
                     transition: 'background-color 0.15s ease'
                   }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-card-hover)'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', minWidth: 0, flex: '1 1 240px' }}>
                     {/* Status Icon */}
                     <div style={{ flexShrink: 0 }}>
                       {isSolved ? (
@@ -1181,17 +1181,16 @@ export default function PracticeLabPage() {
           </div>
 
           {/* Test Workspace Body */}
-          <div style={{ display: 'flex', gap: '20px', flex: 1, minHeight: 0 }}>
+          <div className="recall-test-body">
             {/* Left Drawer / Question Jump Grid */}
-            <div style={{
-              width: '260px',
+            <div className="recall-test-drawer" style={{
               backgroundColor: 'var(--bg-secondary)',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-lg)',
-              padding: '18px',
+              padding: '16px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '16px',
+              gap: '14px',
               overflowY: 'auto'
             }}>
               <div>

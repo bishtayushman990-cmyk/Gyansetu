@@ -78,7 +78,7 @@ export default function InterviewPrepPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 3.5vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -97,7 +97,7 @@ export default function InterviewPrepPage() {
           }}>
             <Briefcase size={16} /> INTERVIEW PREPARATION MASTER BANK
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             Technical & Behavioral Interview Prep
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '720px' }}>
@@ -111,7 +111,7 @@ export default function InterviewPrepPage() {
       </div>
 
       {/* Category Pills */}
-      <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '4px' }}>
+      <div className="horizontal-scroll-row" style={{ display: 'flex', gap: '10px', paddingBottom: '4px' }}>
         {categories.map(c => (
           <button
             key={c}
@@ -136,7 +136,7 @@ export default function InterviewPrepPage() {
       {/* Question Cards */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {filtered.map(q => (
-          <div key={q.id} className="card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div key={q.id} className="card" style={{ padding: 'clamp(16px, 3.5vw, 24px)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
               <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                 <span className="badge" style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--brand-violet)' }}>

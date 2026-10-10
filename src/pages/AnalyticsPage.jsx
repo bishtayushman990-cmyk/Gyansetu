@@ -51,7 +51,7 @@ export default function AnalyticsPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 3.5vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -70,7 +70,7 @@ export default function AnalyticsPage() {
           }}>
             <BarChart3 size={16} /> EVIDENCE-BASED LEARNER METRICS
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             Progress & Analytics
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '700px' }}>

@@ -88,19 +88,18 @@ export default function MistakeMemoryPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Hero / System Banner */}
-      <div style={{
+      <div className="card" style={{
         background: 'linear-gradient(135deg, rgba(14, 26, 61, 0.95) 0%, rgba(10, 19, 44, 0.95) 100%)',
         border: '1.5px solid rgba(239, 68, 68, 0.3)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 4vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '20px',
+        gap: '16px',
         boxShadow: 'var(--shadow-xl)'
       }}>
-        <div>
+        <div style={{ flex: '1 1 280px', minWidth: 0 }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -115,20 +114,19 @@ export default function MistakeMemoryPage() {
           }}>
             <BrainCircuit size={16} /> GYAANSETU SIGNATURE DIFFERENTIATOR
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             Mistake Memory & Detective
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '700px' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '700px', lineHeight: 1.5 }}>
             We don't merely count wrong answers. GyaanSetu analyzes the exact code line, failed test case inputs, detects recurring conceptual habits, and tracks verifiable improvement on subsequent attempts.
           </p>
         </div>
 
         <div style={{
-          padding: '16px 20px',
+          padding: '14px 18px',
           borderRadius: 'var(--radius-md)',
           backgroundColor: 'var(--bg-primary)',
-          border: '1px solid var(--border-subtle)',
-          textAlign: 'right'
+          border: '1px solid var(--border-subtle)'
         }}>
           <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Learning Loop Status</div>
           <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--status-success)', marginTop: '2px' }}>
@@ -198,7 +196,7 @@ export default function MistakeMemoryPage() {
             </h3>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '14px' }}>
             {patterns.map((p, idx) => (
               <div
                 key={idx}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import BrandLogo from './BrandLogo';
 import {
   Search,
   Flame,
@@ -15,7 +16,8 @@ import {
   Sparkles,
   BookOpen,
   CheckCircle2,
-  AlertTriangle
+  AlertTriangle,
+  X
 } from 'lucide-react';
 
 export default function Topbar({ setMobileOpen, pageTitle }) {
@@ -26,11 +28,13 @@ export default function Topbar({ setMobileOpen, pageTitle }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [showNotifDropdown, setShowNotifDropdown] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/practice?search=${encodeURIComponent(searchQuery.trim())}`);
+      setMobileSearchOpen(false);
     }
   };
 
@@ -41,13 +45,21 @@ export default function Topbar({ setMobileOpen, pageTitle }) {
         <button
           onClick={() => setMobileOpen(prev => !prev)}
           className="icon-btn mobile-menu-btn"
-          style={{ display: 'none' }}
+          title="Open navigation menu"
+          aria-label="Toggle navigation drawer"
         >
           <Menu size={20} />
         </button>
 
+        {/* Mobile brand badge for quick navigation and brand presence */}
+        <div className="mobile-brand-wrapper">
+          <Link to="/" onClick={() => setMobileOpen(false)}>
+            <BrandLogo size="small" showTagline={false} />
+          </Link>
+        </div>
+
         {pageTitle && (
-          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.01em' }}>
+          <h2 className="topbar-page-title" title={pageTitle}>
             {pageTitle}
           </h2>
         )}
@@ -55,8 +67,8 @@ export default function Topbar({ setMobileOpen, pageTitle }) {
 
       {/* Right side */}
       <div className="topbar-right">
-        {/* Global Search */}
-        <form onSubmit={handleSearchSubmit} className="global-search">
+        {/* Desktop Global Search */}
+        <form onSubmit={handleSearchSubmit} className="global-search desktop-search">
           <Search size={16} color="var(--text-muted)" />
           <input
             type="text"
@@ -66,43 +78,60 @@ export default function Topbar({ setMobileOpen, pageTitle }) {
           />
         </form>
 
+        {/* Mobile Search Icon Toggle */}
+        <button
+          onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+          className="icon-btn mobile-search-trigger"
+          title="Search problems"
+          aria-label="Toggle search"
+        >
+          {mobileSearchOpen ? <X size={18} /> : <Search size={18} />}
+        </button>
+
         {/* Streak Pill */}
         <div className="streak-pill" title={`${user?.streak || 7} Day Continuous Streak! Keep practising daily to protect it.`}>
-          <Flame size={16} color="#f59e0b" fill="#f59e0b" />
-          <span>{user?.streak || 7} Days</span>
+          <Flame size={15} color="#f59e0b" fill="#f59e0b" style={{ flexShrink: 0 }} />
+          <span className="streak-full">{user?.streak || 7} Days</span>
+          <span className="streak-short">{user?.streak || 7}d</span>
         </div>
 
         {/* XP Badge */}
-        <div className="xp-pill" title={`Level ${user?.level || 4} Scholar`}>
-          <Zap size={16} color="var(--brand-violet)" fill="var(--brand-violet)" />
-          <span>{user?.xp || 1450} XP</span>
+        <div className="xp-pill" title={`Level ${user?.level || 4} Scholar (${user?.xp || 1450} XP)`}>
+          <Zap size={15} color="var(--brand-violet)" fill="var(--brand-violet)" style={{ flexShrink: 0 }} />
+          <span className="xp-full">{user?.xp || 1450} XP</span>
+          <span className="xp-short">{user?.xp || 1450}</span>
         </div>
 
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="icon-btn"
+          className="icon-btn theme-toggle-btn"
           title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
+          aria-label="Toggle color theme"
         >
-          {theme === 'dark' ? <Sun size={18} color="#f59e0b" /> : <Moon size={18} color="#2563eb" />}
+          {theme === 'dark' ? <Sun size={17} color="#f59e0b" /> : <Moon size={17} color="#2563eb" />}
         </button>
 
         {/* Notification Bell */}
         <div style={{ position: 'relative' }}>
           <button
-            onClick={() => setShowNotifDropdown(!showNotifDropdown)}
+            onClick={() => {
+              setShowNotifDropdown(!showNotifDropdown);
+              setShowProfileDropdown(false);
+            }}
             className="icon-btn"
             style={{ position: 'relative' }}
             title="Notifications"
+            aria-label="Notifications"
           >
-            <Bell size={18} />
+            <Bell size={17} />
             <span
               style={{
                 position: 'absolute',
                 top: '6px',
                 right: '6px',
-                width: '8px',
-                height: '8px',
+                width: '7px',
+                height: '7px',
                 backgroundColor: 'var(--brand-gold)',
                 borderRadius: '50%',
                 boxShadow: '0 0 6px var(--brand-gold)'
@@ -112,11 +141,11 @@ export default function Topbar({ setMobileOpen, pageTitle }) {
 
           {showNotifDropdown && (
             <div
+              className="topbar-dropdown notif-dropdown"
               style={{
                 position: 'absolute',
-                top: '46px',
+                top: '44px',
                 right: 0,
-                width: '320px',
                 backgroundColor: 'var(--bg-secondary)',
                 border: '1px solid var(--border-subtle)',
                 borderRadius: 'var(--radius-lg)',
@@ -283,6 +312,29 @@ export default function Topbar({ setMobileOpen, pageTitle }) {
           )}
         </div>
       </div>
+
+      {/* Mobile Search Overlay Bar */}
+      {mobileSearchOpen && (
+        <div className="mobile-search-bar">
+          <form onSubmit={handleSearchSubmit} style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '8px' }}>
+            <Search size={16} color="var(--brand-cyan)" />
+            <input
+              type="text"
+              placeholder="Search problems, topics, algorithms..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              autoFocus
+              style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', color: 'var(--text-primary)', fontSize: '0.9rem' }}
+            />
+            <button type="submit" className="btn btn-primary btn-sm" style={{ padding: '4px 10px', fontSize: '0.78rem' }}>
+              Search
+            </button>
+            <button type="button" onClick={() => setMobileSearchOpen(false)} className="icon-btn" style={{ width: '28px', height: '28px' }}>
+              <X size={16} />
+            </button>
+          </form>
+        </div>
+      )}
     </header>
   );
 }

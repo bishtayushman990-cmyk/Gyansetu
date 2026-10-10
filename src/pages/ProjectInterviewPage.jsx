@@ -412,7 +412,7 @@ export default function ProjectInterviewPage() {
 
           {/* VERIFIED FINDINGS & OBSERVATIONS */}
           {selectedProject.securityObservations && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <div className="grid-responsive-2">
               <div className="card" style={{ padding: '20px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: 'var(--status-success)', fontSize: '0.9rem', marginBottom: '8px' }}>
                   <Shield size={16} /> Verified Security Controls

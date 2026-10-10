@@ -170,7 +170,9 @@ export default function MistakeCard({ mistake }) {
             color: 'var(--text-secondary)',
             maxHeight: '140px',
             overflowY: 'auto',
-            whiteSpace: 'pre-wrap'
+            overflowX: 'auto',
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word'
           }}>
             {mistake.studentAnswer}
           </div>
@@ -184,7 +186,9 @@ export default function MistakeCard({ mistake }) {
               border: '1px solid rgba(239, 68, 68, 0.3)',
               borderRadius: 'var(--radius-sm)',
               padding: '6px 10px',
-              color: 'var(--status-error)'
+              color: 'var(--status-error)',
+              overflowX: 'auto',
+              wordBreak: 'break-word'
             }}>
               <strong>Faulty Line/Snippet:</strong> {mistake.relevantIncorrectSnippet}
             </div>
@@ -215,7 +219,9 @@ export default function MistakeCard({ mistake }) {
             padding: '8px 12px',
             borderRadius: 'var(--radius-sm)',
             border: '1px solid var(--border-subtle)',
-            color: 'var(--brand-cyan)'
+            color: 'var(--brand-cyan)',
+            overflowX: 'auto',
+            wordBreak: 'break-word'
           }}>
             <strong>Diagnostic Evidence:</strong> {mistake.evidence}
           </div>
@@ -230,7 +236,9 @@ export default function MistakeCard({ mistake }) {
             padding: '8px 12px',
             borderRadius: 'var(--radius-sm)',
             border: '1px solid var(--border-subtle)',
-            color: 'var(--text-muted)'
+            color: 'var(--text-muted)',
+            overflowX: 'auto',
+            wordBreak: 'break-word'
           }}>
             Failed Test Case: Input: {JSON.stringify(mistake.failedTestCase.input || mistake.failedTestCase.selectedOption)} • Expected: {JSON.stringify(mistake.failedTestCase.expectedOutput || mistake.failedTestCase.expectedOption)}
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BrandLogo({ size = 'default', showTagline = false, className = '', useImage = true }) {
+export default function BrandLogo({ size = 'default', showTagline = false, className = '', useImage = true, showText = true }) {
   const iconSizes = {
     small: 34,
     default: 44,
@@ -9,6 +9,7 @@ export default function BrandLogo({ size = 'default', showTagline = false, class
   };
 
   const dim = iconSizes[size] || 44;
+  const isLogoOnly = className.includes('logo-only') || showText === false;
 
   return (
     <div className={`brand-logo-container ${className}`} style={{ display: 'inline-flex', alignItems: 'center', gap: size === 'small' ? '10px' : '14px' }}>
@@ -36,38 +37,41 @@ export default function BrandLogo({ size = 'default', showTagline = false, class
         />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{
-          fontFamily: 'var(--font-heading)',
-          fontWeight: 800,
-          fontSize: size === 'small' ? '1.2rem' : size === 'large' ? '2.1rem' : size === 'hero' ? '2.6rem' : '1.5rem',
-          letterSpacing: '-0.02em',
-          lineHeight: 1.1,
-          display: 'flex',
-          alignItems: 'baseline'
-        }}>
-          <span style={{ color: 'var(--text-primary)' }}>Gyaan</span>
-          <span style={{
-            background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #a855f7 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            marginLeft: '1px'
+      {!isLogoOnly && (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 800,
+            fontSize: size === 'small' ? '1.2rem' : size === 'large' ? '2.1rem' : size === 'hero' ? '2.6rem' : '1.5rem',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+            display: 'flex',
+            alignItems: 'baseline'
           }}>
-            Setu
-          </span>
+            <span style={{ color: 'var(--text-primary)' }}>Gyaan</span>
+            <span style={{
+              background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #a855f7 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginLeft: '1px'
+            }}>
+              Setu
+            </span>
+          </div>
+          {showTagline && (
+            <span style={{
+              fontSize: size === 'hero' ? '0.95rem' : size === 'large' ? '0.85rem' : '0.72rem',
+              color: 'var(--text-muted)',
+              fontWeight: 500,
+              letterSpacing: '0.02em',
+              marginTop: '3px'
+            }}>
+              Bridge the Gap Between Learning and Success
+            </span>
+          )}
         </div>
-        {showTagline && (
-          <span style={{
-            fontSize: size === 'hero' ? '0.95rem' : size === 'large' ? '0.85rem' : '0.72rem',
-            color: 'var(--text-muted)',
-            fontWeight: 500,
-            letterSpacing: '0.02em',
-            marginTop: '3px'
-          }}>
-            Bridge the Gap Between Learning and Success
-          </span>
-        )}
-      </div>
+      )}
     </div>
   );
 }
+

@@ -63,32 +63,31 @@ export default function DashboardPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
       {/* Top Banner / Welcome */}
-      <div style={{
+      <div className="card" style={{
         background: 'linear-gradient(135deg, rgba(11, 19, 43, 0.95) 0%, rgba(14, 26, 61, 0.85) 100%)',
         border: '1px solid var(--border-subtle)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 4vw, 28px) clamp(16px, 4vw, 32px)',
         boxShadow: 'var(--shadow-lg)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '20px'
+        gap: '16px'
       }}>
-        <div>
+        <div style={{ flex: '1 1 280px', minWidth: 0 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(6, 182, 212, 0.15)', color: 'var(--brand-cyan)', fontSize: '0.8rem', fontWeight: 700, marginBottom: '8px' }}>
             <Sparkles size={14} /> Placement Roadmap 2026
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             Welcome back, {user?.displayName || "Scholar"}!
           </h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', lineHeight: 1.5 }}>
             {user?.target || "Campus Placements SDE-1"} • Target daily pace: {user?.availableStudyTime || "2 hours / day"}
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-          <div style={{ textAlign: 'right' }}>
+        <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Daily Solved Goal</div>
             <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
               {user?.dailySolvedToday || 1} / {user?.dailyGoal || 3} Questions

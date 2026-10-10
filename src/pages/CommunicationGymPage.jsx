@@ -305,12 +305,9 @@ export default function CommunicationGymPage() {
       </div>
 
       {/* Tabs Navigation */}
-      <div style={{
-        display: 'flex',
-        gap: '8px',
+      <div className="horizontal-scroll-row" style={{
         borderBottom: '1px solid var(--border-subtle)',
-        paddingBottom: '4px',
-        overflowX: 'auto'
+        paddingBottom: '6px'
       }}>
         {[
           { id: 'daily', label: 'Daily Speaking Challenge', icon: Flame },
@@ -350,7 +347,7 @@ export default function CommunicationGymPage() {
 
       {/* TAB 1: DAILY SPEAKING CHALLENGE & CLARITY COACH */}
       {(activeTab === 'daily' || activeTab === 'coach') && selectedChallenge && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 340px) 1fr', gap: '24px' }}>
+        <div className="comm-gym-layout">
           {/* Left Column: Challenge Selector & Guidelines */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div className="card" style={{ padding: '20px' }}>
@@ -639,7 +636,7 @@ export default function CommunicationGymPage() {
                 </div>
 
                 {/* What Worked & What Needs Improvement */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="grid-responsive-2">
                   <div style={{ backgroundColor: 'rgba(16, 185, 129, 0.08)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
                     <div style={{ fontWeight: 700, color: 'var(--status-success)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                       <CheckCircle2 size={16} /> What Worked

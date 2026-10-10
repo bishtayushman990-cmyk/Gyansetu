@@ -69,7 +69,7 @@ export default function ArenaPage() {
         background: 'linear-gradient(135deg, rgba(14, 26, 61, 0.95) 0%, rgba(10, 19, 44, 0.95) 100%)',
         border: '1px solid var(--brand-violet)',
         borderRadius: 'var(--radius-lg)',
-        padding: '28px 32px',
+        padding: 'clamp(18px, 3.5vw, 28px) clamp(16px, 4vw, 32px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -89,7 +89,7 @@ export default function ArenaPage() {
           }}>
             <Swords size={16} /> COMPETITIVE ARENA & MISSIONS
           </div>
-          <h1 style={{ fontSize: '1.9rem', fontWeight: 800 }}>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.9rem)', fontWeight: 800 }}>
             GyaanSetu Arena
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginTop: '4px', maxWidth: '680px' }}>
@@ -98,7 +98,7 @@ export default function ArenaPage() {
         </div>
 
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'left' }}>
             <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-violet)' }}>
               {user?.xp || 1450} XP
             </div>
@@ -112,7 +112,7 @@ export default function ArenaPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1.5px solid var(--brand-gold)',
         borderRadius: 'var(--radius-lg)',
-        padding: '24px 28px',
+        padding: 'clamp(16px, 3.5vw, 24px) clamp(16px, 4vw, 28px)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -132,7 +132,7 @@ export default function ArenaPage() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <button
             onClick={() => navigate('/practice/q-two-sum')}
             className="btn btn-primary"

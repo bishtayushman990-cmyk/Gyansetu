@@ -19,7 +19,8 @@ import {
   ChevronRight,
   ExternalLink,
   HelpCircle,
-  Mic
+  Mic,
+  X
 } from 'lucide-react';
 
 export default function Sidebar({ mobileOpen, setMobileOpen }) {
@@ -46,45 +47,39 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
       {/* Mobile Backdrop */}
       {mobileOpen && (
         <div
+          className="sidebar-backdrop"
           onClick={() => setMobileOpen(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: 'var(--bg-overlay)',
-            zIndex: 45,
-            backdropFilter: 'blur(4px)'
-          }}
+          aria-hidden="true"
         />
       )}
 
-      <aside
-        className={`sidebar ${collapsed ? 'collapsed' : ''}`}
-        style={{
-          position: 'sticky',
-          top: 0,
-          transform: mobileOpen ? 'translateX(0)' : undefined
-        }}
-      >
+      <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${mobileOpen ? 'mobile-open' : ''}`}>
         {/* Header */}
         <div className="sidebar-header">
-          {!collapsed ? (
-            <Link to="/" onClick={() => setMobileOpen(false)}>
-              <BrandLogo size="small" />
-            </Link>
-          ) : (
-            <Link to="/" onClick={() => setMobileOpen(false)}>
-              <BrandLogo size="small" className="logo-only" />
-            </Link>
-          )}
+          <Link to="/" onClick={() => setMobileOpen(false)} className="sidebar-brand-link">
+            <BrandLogo size="small" className={collapsed ? "logo-only desktop-only" : ""} />
+          </Link>
 
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="icon-btn"
-            style={{ width: '30px', height: '30px' }}
-            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          >
-            {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {/* Desktop collapse button */}
+            <button
+              onClick={() => setCollapsed(!collapsed)}
+              className="icon-btn desktop-collapse-btn"
+              style={{ width: '30px', height: '30px' }}
+              title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+            </button>
+
+            {/* Mobile close drawer button */}
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="icon-btn mobile-close-btn"
+              title="Close navigation menu"
+            >
+              <X size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Navigation list */}

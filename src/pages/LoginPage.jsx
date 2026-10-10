@@ -48,7 +48,7 @@ export default function LoginPage() {
         backgroundColor: 'var(--bg-secondary)',
         border: '1px solid var(--border-subtle)',
         borderRadius: 'var(--radius-lg)',
-        padding: '36px',
+        padding: 'clamp(20px, 5vw, 36px)',
         boxShadow: 'var(--shadow-xl)'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
@@ -71,7 +71,9 @@ export default function LoginPage() {
           fontSize: '0.82rem',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '10px'
         }}>
           <div>
             <strong style={{ color: 'var(--brand-cyan)' }}>Demo Account Ready</strong>
