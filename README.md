@@ -99,20 +99,16 @@ This approach aims to turn incorrect answers into actionable learning opportunit
 
 ## 🛠️ Technology Stack
 
-The exact stack depends on the implementation in this repository.
+The project is built as a complete, unified full-stack application:
 
-Update this section to reflect the technologies actually used:
-
-- **Frontend:** [Add your frontend framework]
-- **Styling:** [Add your CSS framework or styling solution]
-- **Backend:** [Add your backend framework]
-- **Database:** [Add your database]
-- **Authentication:** [Add your authentication provider]
-- **AI Integration:** [Add the configured AI provider, if applicable]
-- **Code Execution:** [Add the configured secure execution service, if applicable]
-- **Deployment:** [Add your deployment platform]
-
-Do not list technologies that are not actually configured in the project.
+- **Frontend:** React 19, React Router v7, Lucide Icons, Canvas Confetti
+- **Styling:** Custom Vanilla CSS Design System with light/dark theme tokens, glassmorphism, responsive grids
+- **Backend:** Node.js (v24), Express 5 REST API with robust security middleware
+- **Database:** Atomic persistent JSON WAL database (`data/gyansetu_db.json`)
+- **Authentication:** Persistent session-based authentication with instant Demo Mode
+- **AI Integration:** Google Gemini API (`@google/genai`) with built-in contextual fallback engine
+- **Code Execution:** Sandboxed Node.js `vm` execution engine with timeout isolation and multi-language support (JS, Python, C++, Java, SQL)
+- **Tooling:** Vite 8, Concurrently
 
 ## ⚙️ Getting Started
 
@@ -195,20 +191,20 @@ The security and reliability of individual features depend on their actual imple
 
 ## 🗺️ Development Roadmap
 
-- [ ] Responsive landing page and application dashboard.
-- [ ] Authentication and onboarding.
-- [ ] Practice Lab with searchable question collections.
-- [ ] Persistent attempt history and bookmarks.
-- [ ] Mistake Memory with evidence-based analysis.
-- [ ] Revision recommendations and retry tracking.
-- [ ] Five-level Hint Ladder.
-- [ ] AI Study Buddy integration.
-- [ ] Adaptive Study Planner.
-- [ ] Project Interview Lab.
-- [ ] Progress analytics.
-- [ ] Skill Tree and learning achievements.
-- [ ] Secure code execution integration.
-- [ ] Production deployment and end-to-end testing.
+- [x] Responsive landing page and application dashboard.
+- [x] Authentication and onboarding.
+- [x] Practice Lab with searchable question collections.
+- [x] Persistent attempt history and bookmarks.
+- [x] Mistake Memory with evidence-based analysis.
+- [x] Revision recommendations and retry tracking.
+- [x] Five-level Hint Ladder.
+- [x] AI Study Buddy integration.
+- [x] Adaptive Study Planner.
+- [x] Project Interview Lab.
+- [x] Progress analytics.
+- [x] Skill Tree and learning achievements.
+- [x] Secure code execution integration.
+- [x] Production deployment and end-to-end testing.
 
 Update these checkboxes as features are implemented and verified. They represent the intended development roadmap, not a claim that every feature is already complete.
 

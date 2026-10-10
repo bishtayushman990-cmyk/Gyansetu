@@ -1,0 +1,4567 @@
+// Comprehensive Verified Question Bank for GyaanSetu
+// Placement Preparation: DSA, SQL, OS, Aptitude, Networks, OOP, Architecture, Security, Tech Interviews, HR
+
+export const SEED_QUESTIONS = [
+  {
+    "id": "q-two-sum",
+    "slug": "two-sum",
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Arrays & Hashing",
+    "type": "coding",
+    "description": "Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to `target`.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    "examples": [
+      {
+        "input": "nums = [2,7,11,15], target = 9",
+        "output": "[0,1]",
+        "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+      },
+      {
+        "input": "nums = [3,2,4], target = 6",
+        "output": "[1,2]",
+        "explanation": "nums[1] + nums[2] == 6, we return [1, 2]."
+      },
+      {
+        "input": "nums = [3,3], target = 6",
+        "output": "[0,1]"
+      }
+    ],
+    "constraints": [
+      "2 <= nums.length <= 10^4",
+      "-10^9 <= nums[i] <= 10^9",
+      "-10^9 <= target <= 10^9",
+      "Only one valid answer exists."
+    ],
+    "starterCode": {
+      "javascript": "function twoSum(nums, target) {\n    // Write your solution here\n    const map = new Map();\n    for (let i = 0; i < nums.length; i++) {\n        const complement = target - nums[i];\n        if (map.has(complement)) {\n            return [map.get(complement), i];\n        }\n        map.set(nums[i], i);\n    }\n    return [];\n}",
+      "python": "def twoSum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in seen:\n            return [seen[diff], i]\n        seen[num] = i\n    return []",
+      "cpp": "#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nvector<int> twoSum(vector<int>& nums, int target) {\n    unordered_map<int, int> mp;\n    for (int i = 0; i < nums.size(); ++i) {\n        int comp = target - nums[i];\n        if (mp.count(comp)) return {mp[comp], i};\n        mp[nums[i]] = i;\n    }\n    return {};\n}",
+      "java": "import java.util.*;\n\nclass Solution {\n    public int[] twoSum(int[] nums, int target) {\n        Map<Integer, Integer> map = new HashMap<>();\n        for (int i = 0; i < nums.length; i++) {\n            int complement = target - nums[i];\n            if (map.containsKey(complement)) {\n                return new int[] { map.get(complement), i };\n            }\n            map.put(nums[i], i);\n        }\n        return new int[0];\n    }\n}"
+    },
+    "testCases": [
+      {
+        "input": {
+          "nums": [
+            2,
+            7,
+            11,
+            15
+          ],
+          "target": 9
+        },
+        "expectedOutput": [
+          0,
+          1
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            3,
+            2,
+            4
+          ],
+          "target": 6
+        },
+        "expectedOutput": [
+          1,
+          2
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            3,
+            3
+          ],
+          "target": 6
+        },
+        "expectedOutput": [
+          0,
+          1
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            1,
+            5,
+            8,
+            3,
+            9,
+            2
+          ],
+          "target": 11
+        },
+        "expectedOutput": [
+          2,
+          3
+        ],
+        "isHidden": true
+      },
+      {
+        "input": {
+          "nums": [
+            -3,
+            4,
+            3,
+            90
+          ],
+          "target": 0
+        },
+        "expectedOutput": [
+          0,
+          2
+        ],
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Can you find a complement value (target - current_number) in constant time instead of running a nested loop?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "A nested loop takes O(N^2) time. Think about using an auxiliary hash table (Map / Dictionary) to store seen elements and their indices."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Iterate through nums with index i. For each number x, calculate complement = target - x. Check if complement already exists in your hash map. If yes, return [stored_index, i]. If no, store x -> i in the map."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Avoid using the same element twice. Check the map before inserting the current element so you don't match an element with itself."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time Complexity: O(N) because each lookup in a hash map is O(1) on average.\nSpace Complexity: O(N) to store up to N elements in the map.\n\nCode snippet (JS):\nconst map = new Map();\nfor (let i = 0; i < nums.length; i++) {\n  const complement = target - nums[i];\n  if (map.has(complement)) return [map.get(complement), i];\n  map.set(nums[i], i);\n}"
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/two-sum/",
+      "geeksforgeeks": "https://www.geeksforgeeks.org/check-if-pair-with-given-sum-exists-in-array/"
+    }
+  },
+  {
+    "id": "q-reverse-linked-list",
+    "slug": "reverse-linked-list",
+    "title": "Reverse a Singly Linked List",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Linked Lists",
+    "type": "coding",
+    "description": "Given the head of a singly linked list, reverse the list, and return the reversed list.\n\nExample:\nInput: head = [1,2,3,4,5]\nOutput: [5,4,3,2,1]",
+    "examples": [
+      {
+        "input": "head = [1,2,3,4,5]",
+        "output": "[5,4,3,2,1]"
+      },
+      {
+        "input": "head = [1,2]",
+        "output": "[2,1]"
+      },
+      {
+        "input": "head = []",
+        "output": "[]"
+      }
+    ],
+    "constraints": [
+      "The number of nodes in the list is the range [0, 5000].",
+      "-5000 <= Node.val <= 5000"
+    ],
+    "starterCode": {
+      "javascript": "function reverseList(head) {\n    let prev = null;\n    let curr = head;\n    while (curr) {\n        let next = curr.next;\n        curr.next = prev;\n        prev = curr;\n        curr = next;\n    }\n    return prev;\n}",
+      "python": "def reverseList(head):\n    prev = None\n    curr = head\n    while curr:\n        nxt = curr.next\n        curr.next = prev\n        prev = curr\n        curr = nxt\n    return prev"
+    },
+    "testCases": [
+      {
+        "input": {
+          "head": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "expectedOutput": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "head": [
+            1,
+            2
+          ]
+        },
+        "expectedOutput": [
+          2,
+          1
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "head": []
+        },
+        "expectedOutput": [],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "head": [
+            42
+          ]
+        },
+        "expectedOutput": [
+          42
+        ],
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "To reverse a pointer A -> B, you need to point B -> A. How do you preserve the pointer to C so you don't lose the remaining list?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Maintain three pointers: prev (initially null), curr (initially head), and next (temporary pointer to curr.next)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "While curr is not null:\n1. next = curr.next\n2. curr.next = prev\n3. prev = curr\n4. curr = next\nFinally return prev."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Watch for the edge case where head is null or list has 1 node. Ensure you return prev, not curr (which will be null at loop exit)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Iterative Approach has O(N) Time and O(1) Space. It reverses references in a single forward pass without extra memory."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/reverse-linked-list/",
+      "geeksforgeeks": "https://www.geeksforgeeks.org/reverse-a-linked-list/"
+    }
+  },
+  {
+    "id": "q-valid-parentheses",
+    "slug": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Stacks & Queues",
+    "type": "coding",
+    "description": "Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+    "examples": [
+      {
+        "input": "s = '()'",
+        "output": "true"
+      },
+      {
+        "input": "s = '()[]{}'",
+        "output": "true"
+      },
+      {
+        "input": "s = '(]'",
+        "output": "false"
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^4",
+      "s consists of parentheses only '()[]{}'."
+    ],
+    "starterCode": {
+      "javascript": "function isValid(s) {\n    const stack = [];\n    const pairs = { ')': '(', '}': '{', ']': '[' };\n    for (let char of s) {\n        if (char === '(' || char === '{' || char === '[') {\n            stack.push(char);\n        } else {\n            if (stack.length === 0 || stack.pop() !== pairs[char]) {\n                return false;\n            }\n        }\n    }\n    return stack.length === 0;\n}",
+      "python": "def isValid(s):\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in mapping:\n            top = stack.pop() if stack else '#'\n            if mapping[char] != top:\n                return False\n        else:\n            stack.append(char)\n    return not stack"
+    },
+    "testCases": [
+      {
+        "input": {
+          "s": "()"
+        },
+        "expectedOutput": true,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "s": "()[]{}"
+        },
+        "expectedOutput": true,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "s": "(]"
+        },
+        "expectedOutput": false,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "s": "([)]"
+        },
+        "expectedOutput": false,
+        "isHidden": true
+      },
+      {
+        "input": {
+          "s": "]"
+        },
+        "expectedOutput": false,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "The last bracket opened must be the first one to be closed. Which LIFO data structure handles this order?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Push opening brackets onto a stack. When encountering a closing bracket, verify that the stack is non-empty and the top matches."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Iterate through each character. If it's an open bracket, push. If closed, check if stack is empty (fail immediately) then pop and match. After the loop, return stack.length === 0."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Common failure: forgetting to check stack.length === 0 at the end. For string '(', popping never happens, so check if any unclosed brackets remain."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(N), Space: O(N). Stack ensures strict nesting verification."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/valid-parentheses/",
+      "geeksforgeeks": "https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/"
+    }
+  },
+  {
+    "id": "q-binary-search",
+    "slug": "binary-search",
+    "title": "Binary Search",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Binary Search and Sorting",
+    "type": "coding",
+    "description": "Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If target exists, then return its index. Otherwise, return -1.\n\nYou must write an algorithm with `O(log n)` runtime complexity.",
+    "examples": [
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 9",
+        "output": "4",
+        "explanation": "9 exists in nums and its index is 4"
+      },
+      {
+        "input": "nums = [-1,0,3,5,9,12], target = 2",
+        "output": "-1",
+        "explanation": "2 does not exist in nums so return -1"
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^4",
+      "-10^4 < nums[i], target < 10^4",
+      "All integers in nums are unique.",
+      "nums is sorted in ascending order."
+    ],
+    "starterCode": {
+      "javascript": "function search(nums, target) {\n    let left = 0;\n    let right = nums.length - 1;\n    while (left <= right) {\n        const mid = Math.floor(left + (right - left) / 2);\n        if (nums[mid] === target) return mid;\n        if (nums[mid] < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return -1;\n}",
+      "python": "def search(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        mid = l + (r - l) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            l = mid + 1\n        else:\n            r = mid - 1\n    return -1"
+    },
+    "testCases": [
+      {
+        "input": {
+          "nums": [
+            -1,
+            0,
+            3,
+            5,
+            9,
+            12
+          ],
+          "target": 9
+        },
+        "expectedOutput": 4,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            -1,
+            0,
+            3,
+            5,
+            9,
+            12
+          ],
+          "target": 2
+        },
+        "expectedOutput": -1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            5
+          ],
+          "target": 5
+        },
+        "expectedOutput": 0,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            2,
+            5
+          ],
+          "target": 2
+        },
+        "expectedOutput": 0,
+        "isHidden": true
+      },
+      {
+        "input": {
+          "nums": [
+            2,
+            5
+          ],
+          "target": 5
+        },
+        "expectedOutput": 1,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Since the array is sorted, every comparison eliminates half the remaining elements."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Use two pointers: left = 0 and right = nums.length - 1. Calculate mid = left + Math.floor((right - left) / 2)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "While left <= right: if nums[mid] === target return mid; if nums[mid] < target set left = mid + 1; else set right = mid - 1. Return -1 if loop ends."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Crucial boundary check: use `left <= right` instead of `left < right`. Using `<` terminates prematurely when the search space narrows to a single element."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time Complexity: O(log N). Integer overflow is prevented by calculating `mid = left + (right - left) / 2`."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/binary-search/",
+      "geeksforgeeks": "https://www.geeksforgeeks.org/binary-search/"
+    }
+  },
+  {
+    "id": "q-max-subarray",
+    "slug": "maximum-subarray",
+    "title": "Maximum Subarray (Kadane's Algorithm)",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Dynamic Programming",
+    "type": "coding",
+    "description": "Given an integer array `nums`, find the subarray with the largest sum, and return its sum.\n\nA subarray is a contiguous non-empty sequence of elements within an array.",
+    "examples": [
+      {
+        "input": "nums = [-2,1,-3,4,-1,2,1,-5,4]",
+        "output": "6",
+        "explanation": "The subarray [4,-1,2,1] has the largest sum 6."
+      },
+      {
+        "input": "nums = [1]",
+        "output": "1"
+      },
+      {
+        "input": "nums = [5,4,-1,7,8]",
+        "output": "23"
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "-10^4 <= nums[i] <= 10^4"
+    ],
+    "starterCode": {
+      "javascript": "function maxSubArray(nums) {\n    let currentSum = nums[0];\n    let maxSum = nums[0];\n    for (let i = 1; i < nums.length; i++) {\n        currentSum = Math.max(nums[i], currentSum + nums[i]);\n        maxSum = Math.max(maxSum, currentSum);\n    }\n    return maxSum;\n}",
+      "python": "def maxSubArray(nums):\n    cur = mx = nums[0]\n    for x in nums[1:]:\n        cur = max(x, cur + x)\n        mx = max(mx, cur)\n    return mx"
+    },
+    "testCases": [
+      {
+        "input": {
+          "nums": [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        },
+        "expectedOutput": 6,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            1
+          ]
+        },
+        "expectedOutput": 1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            5,
+            4,
+            -1,
+            7,
+            8
+          ]
+        },
+        "expectedOutput": 23,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            -1,
+            -2,
+            -3
+          ]
+        },
+        "expectedOutput": -1,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "If a running subarray sum becomes negative, continuing it will decrease any future subarray sum."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "At each element, choose: either extend the previous subarray or start fresh from current element."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "currentSum = Math.max(nums[i], currentSum + nums[i]); maxSum = Math.max(maxSum, currentSum)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Watch for all-negative arrays like [-1, -2, -3]. If you initialize maxSum to 0, it will return 0 instead of -1! Initialize with nums[0]."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Kadane's algorithm runs in O(N) time and O(1) space by maintaining optimal local sub-state."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/maximum-subarray/",
+      "geeksforgeeks": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/"
+    }
+  },
+  {
+    "id": "q-longest-substring",
+    "slug": "longest-substring-without-repeating-characters",
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Strings & Sliding Window",
+    "type": "coding",
+    "description": "Given a string `s`, find the length of the longest substring without repeating characters.\n\nExample:\nInput: s = \"abcabcbb\"\nOutput: 3\nExplanation: The answer is \"abc\", with the length of 3.",
+    "examples": [
+      {
+        "input": "s = 'abcabcbb'",
+        "output": "3"
+      },
+      {
+        "input": "s = 'bbbbb'",
+        "output": "1"
+      },
+      {
+        "input": "s = 'pwwkew'",
+        "output": "3"
+      }
+    ],
+    "constraints": [
+      "0 <= s.length <= 5 * 10^4",
+      "s consists of English letters, digits, symbols and spaces."
+    ],
+    "starterCode": {
+      "javascript": "function lengthOfLongestSubstring(s) {\n    let map = new Map();\n    let maxLen = 0;\n    let left = 0;\n    for (let right = 0; right < s.length; right++) {\n        if (map.has(s[right])) {\n            left = Math.max(left, map.get(s[right]) + 1);\n        }\n        map.set(s[right], right);\n        maxLen = Math.max(maxLen, right - left + 1);\n    }\n    return maxLen;\n}",
+      "python": "def lengthOfLongestSubstring(s):\n    seen = {}\n    l = mx = 0\n    for r, c in enumerate(s):\n        if c in seen:\n            l = max(l, seen[c] + 1)\n        seen[c] = r\n        mx = max(mx, r - l + 1)\n    return mx"
+    },
+    "testCases": [
+      {
+        "input": {
+          "s": "abcabcbb"
+        },
+        "expectedOutput": 3,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "s": "bbbbb"
+        },
+        "expectedOutput": 1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "s": "pwwkew"
+        },
+        "expectedOutput": 3,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "s": ""
+        },
+        "expectedOutput": 0,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Can a sliding window with left and right pointers keep track of characters inside the current window?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Use a Hash Map to store the last seen index of each character."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "When a duplicate character s[right] is encountered, advance left = Math.max(left, map.get(s[right]) + 1)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Do not move left backwards! Always use Math.max(left, previous_index + 1) to ensure the window only contracts."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(N) since each character is visited at most twice. Space: O(min(N, M)) where M is alphabet size."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+    }
+  },
+  {
+    "id": "q-trapping-rain-water",
+    "slug": "trapping-rain-water",
+    "title": "Trapping Rain Water",
+    "difficulty": "Hard",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Two Pointers & Monotonic Stack",
+    "type": "coding",
+    "description": "Given `n` non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\nInput: height = [0,1,0,2,1,0,1,3,2,1,2,1]\nOutput: 6",
+    "examples": [
+      {
+        "input": "height = [0,1,0,2,1,0,1,3,2,1,2,1]",
+        "output": "6"
+      },
+      {
+        "input": "height = [4,2,0,3,2,5]",
+        "output": "9"
+      }
+    ],
+    "constraints": [
+      "n == height.length",
+      "1 <= n <= 2 * 10^4",
+      "0 <= height[i] <= 10^5"
+    ],
+    "starterCode": {
+      "javascript": "function trap(height) {\n    let left = 0, right = height.length - 1;\n    let leftMax = 0, rightMax = 0;\n    let totalWater = 0;\n    while (left < right) {\n        if (height[left] < height[right]) {\n            if (height[left] >= leftMax) leftMax = height[left];\n            else totalWater += leftMax - height[left];\n            left++;\n        } else {\n            if (height[right] >= rightMax) rightMax = height[right];\n            else totalWater += rightMax - height[right];\n            right--;\n        }\n    }\n    return totalWater;\n}",
+      "python": "def trap(height):\n    l, r = 0, len(height) - 1\n    l_max = r_max = ans = 0\n    while l < r:\n        if height[l] < height[r]:\n            if height[l] >= l_max: l_max = height[l]\n            else: ans += l_max - height[l]\n            l += 1\n        else:\n            if height[r] >= r_max: r_max = height[r]\n            else: ans += r_max - height[r]\n            r -= 1\n    return ans"
+    },
+    "testCases": [
+      {
+        "input": {
+          "height": [
+            0,
+            1,
+            0,
+            2,
+            1,
+            0,
+            1,
+            3,
+            2,
+            1,
+            2,
+            1
+          ]
+        },
+        "expectedOutput": 6,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "height": [
+            4,
+            2,
+            0,
+            3,
+            2,
+            5
+          ]
+        },
+        "expectedOutput": 9,
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "At any position i, how much water can be trapped? Min(max_left, max_right) - height[i]."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Instead of two passes to precalculate prefix/suffix maxes, can two pointers moving inwards do it in O(1) space?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Advance the pointer with the smaller current height, as the trapped water volume is bottlenecked by the smaller boundary."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Ensure you update leftMax/rightMax before accumulating water, so you never add negative water volume."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Two-pointer technique achieves optimal O(N) time and O(1) auxiliary memory."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/trapping-rain-water/"
+    }
+  },
+  {
+    "id": "q-mcq-os-deadlock",
+    "slug": "os-deadlock-conditions",
+    "title": "Coffman Conditions for Deadlock",
+    "difficulty": "Medium",
+    "category": "Operating Systems",
+    "subtopic": "Concurrency & Deadlocks",
+    "type": "mcq",
+    "description": "Which of the following is NOT one of the four essential Coffman conditions necessary for a system deadlock to occur?",
+    "options": [
+      "Mutual Exclusion",
+      "Hold and Wait",
+      "Preemption Allowed",
+      "Circular Wait"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Mutual Exclusion is a required condition: at least one resource must be non-shareable.",
+      "Hold and Wait is a required condition: a process holds allocated resources while waiting for additional ones.",
+      "Correct! 'Preemption Allowed' prevents deadlock. The required condition for deadlock is 'No Preemption' (resources cannot be forcibly revoked).",
+      "Circular Wait is a required condition: a closed chain of processes exists where each waits for a resource held by the next."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Think about whether allowing the OS to snatch a resource solves or causes a deadlock."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "The four Coffman conditions are: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Compare the word 'Preemption Allowed' vs 'No Preemption'."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "If preemption is allowed, deadlock is broken immediately by revoking resources."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "'No Preemption' is mandatory for deadlocks. If preemption is allowed, resources can be reclaimed to restore safe execution."
+      }
+    ],
+    "officialLinks": {
+      "geeksforgeeks": "https://www.geeksforgeeks.org/deadlock-in-operating-system/"
+    }
+  },
+  {
+    "id": "q-mcq-os-scheduling",
+    "slug": "os-cpu-scheduling-convoy",
+    "title": "CPU Scheduling: The Convoy Effect",
+    "difficulty": "Easy",
+    "category": "Operating Systems",
+    "subtopic": "Process Scheduling",
+    "type": "mcq",
+    "description": "Which CPU scheduling algorithm commonly suffers from the 'Convoy Effect' where short processes wait behind a long CPU-bound process?",
+    "options": [
+      "Round Robin (RR)",
+      "First-Come, First-Served (FCFS)",
+      "Shortest Job First (SJF)",
+      "Priority Scheduling with Aging"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Round Robin uses time slices to ensure short processes get CPU turns quickly.",
+      "Correct! In FCFS, if a large CPU-burst job arrives first, all subsequent short I/O bound jobs are stuck waiting in line (Convoy Effect).",
+      "SJF prioritizes short jobs, eliminating the convoy effect.",
+      "Priority scheduling with aging prevents indefinite postponement."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Consider the simplest non-preemptive queue where whichever arrives first takes the CPU until completion."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Think of a queue at an ATM where the first customer performs a 30-minute transaction."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "FCFS executes strictly in order of arrival without preemption."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Preemptive algorithms like Round Robin solve this using time quantum."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "FCFS causes lower CPU and device utilization due to the convoy effect."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-os-virtual-memory",
+    "slug": "os-virtual-memory-thrashing",
+    "title": "Virtual Memory & Thrashing",
+    "difficulty": "Hard",
+    "category": "Operating Systems",
+    "subtopic": "Memory Management & Paging",
+    "type": "mcq",
+    "description": "In an Operating System with virtual memory, what is 'Thrashing' primarily caused by?",
+    "options": [
+      "When the CPU clock speed exceeds the bus frequency",
+      "When the sum of working-set sizes of active processes exceeds total physical memory",
+      "When a deadlock occurs between the disk driver and DMA controller",
+      "When the TLB (Translation Lookaside Buffer) has a 100% cache hit rate"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Clock speed mismatch causes hardware wait-states, not thrashing.",
+      "Correct! When active working sets exceed physical RAM, page faults skyrocket and the OS spends more time swapping pages than executing instructions.",
+      "DMA issues cause hardware I/O hangs, not page replacement thrashing.",
+      "A 100% TLB hit rate indicates optimal performance."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Thrashing is characterized by excessive disk paging activity and near-zero CPU progress."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "What happens when too many processes demand more frames than physical RAM has?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Peter Denning's Working Set Model defines thrashing when sum(Working Sets) > Physical Memory."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Look for the condition where page replacement occurs continuously across processes."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "When physical RAM is exhausted, page faults trigger more paging, causing CPU utilization to collapse."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-cn-tcp-udp",
+    "slug": "cn-tcp-vs-udp",
+    "title": "TCP vs UDP Header Differences",
+    "difficulty": "Easy",
+    "category": "Computer Networks",
+    "subtopic": "Transport Layer",
+    "type": "mcq",
+    "description": "What is the minimum header size of a TCP segment versus a UDP datagram respectively?",
+    "options": [
+      "20 bytes and 8 bytes",
+      "40 bytes and 20 bytes",
+      "8 bytes and 20 bytes",
+      "16 bytes and 4 bytes"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! A standard TCP header without options is 20 bytes, whereas UDP's minimal header is 8 bytes (Source Port, Dest Port, Length, Checksum).",
+      "40 bytes is the minimum IPv6 base header.",
+      "Inverted: TCP is heavier (20 bytes) than UDP (8 bytes).",
+      "Incorrect sizes."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "TCP is connection-oriented and tracks sequence numbers, making its header larger than lightweight UDP."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "UDP has only 4 fields (2 bytes each = 8 bytes)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "TCP needs sequence number, acknowledgment number, flags, and window size (total 20 bytes minimum)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Verify the 20 vs 8 byte combination."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "TCP min header = 20 bytes; UDP fixed header = 8 bytes."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-cn-cidr",
+    "slug": "cn-cidr-subnet-calculation",
+    "title": "CIDR Subnetting & Usable Hosts",
+    "difficulty": "Medium",
+    "category": "Computer Networks",
+    "subtopic": "Network Layer & IP Addressing",
+    "type": "mcq",
+    "description": "Given the IPv4 subnet 192.168.10.0/27, how many usable host IP addresses are available in this subnet?",
+    "options": [
+      "32",
+      "30",
+      "62",
+      "14"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "32 is total IP addresses (2^5), but network and broadcast addresses cannot be assigned to hosts.",
+      "Correct! /27 leaves 32 - 27 = 5 host bits. Total IPs = 2^5 = 32. Subtracting Network ID and Broadcast ID leaves 30 usable host IPs.",
+      "62 usable hosts corresponds to a /26 subnet.",
+      "14 usable hosts corresponds to a /28 subnet."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "An IPv4 address has 32 bits. How many bits are left for hosts in a /27 prefix?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Host bits = 32 - 27 = 5. Total addresses = 2^5."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Usable hosts formula: (2^H) - 2."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Always remember to subtract 2 for the Network Address and Broadcast Address."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "2^5 - 2 = 32 - 2 = 30 usable host IP addresses."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-cn-tls",
+    "slug": "cn-tls-handshake-security",
+    "title": "TLS Handshake & Hybrid Encryption",
+    "difficulty": "Hard",
+    "category": "Computer Networks",
+    "subtopic": "Network Security & Application Layer",
+    "type": "mcq",
+    "description": "Why does HTTPS/TLS use Asymmetric Encryption during the handshake and Symmetric Encryption for subsequent session data transmission?",
+    "options": [
+      "Asymmetric encryption is faster to compute on high data throughput than symmetric encryption",
+      "Symmetric encryption cannot share a secret over an unencrypted channel, while asymmetric encryption is computationally too expensive for large data transfers",
+      "Asymmetric encryption only works on UDP, while symmetric encryption requires TCP",
+      "Symmetric keys expire after every HTTP packet transmitted"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Symmetric encryption (AES) is ~1000x faster than asymmetric (RSA/ECC), making the premise false.",
+      "Correct! Asymmetric key cryptography solves the key-exchange problem, then establishes a fast shared symmetric session key for high-throughput streaming.",
+      "Both symmetric and asymmetric ciphers run at the transport/session layer regardless of UDP/TCP.",
+      "Session keys persist for the duration of the TLS session."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Consider the computational speed difference between AES and RSA."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "How do two strangers agree on a secret key over a public network?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "TLS uses hybrid encryption: asymmetric for key exchange, symmetric for payload."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Symmetric encryption is computationally lightweight for bulk data transfer."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Hybrid encryption combines asymmetric key distribution with symmetric throughput speed."
+      }
+    ]
+  },
+  {
+    "id": "q-sql-second-highest",
+    "slug": "second-highest-salary",
+    "title": "Second Highest Salary",
+    "difficulty": "Medium",
+    "category": "DBMS and SQL",
+    "subtopic": "SQL Queries & Aggregates",
+    "type": "sql",
+    "description": "Write an SQL query to find the second highest salary from the `Employee` table.\n\nTable: Employee\n+----+--------+\n| id | salary |\n+----+--------+\n| 1  | 100    |\n| 2  | 200    |\n| 3  | 300    |\n+----+--------+\n\nIf there is no second highest salary, return NULL.",
+    "examples": [
+      {
+        "input": "Employee with salaries 100, 200, 300",
+        "output": "200"
+      },
+      {
+        "input": "Employee with only one salary 100",
+        "output": "null"
+      }
+    ],
+    "constraints": [
+      "Table has column id (INT) and salary (INT).",
+      "Salary values can have duplicates."
+    ],
+    "starterCode": {
+      "sql": "SELECT MAX(salary) AS SecondHighestSalary\nFROM Employee\nWHERE salary < (SELECT MAX(salary) FROM Employee);"
+    },
+    "testCases": [
+      {
+        "input": {
+          "queryType": "salary"
+        },
+        "expectedOutput": "200",
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What if there are multiple employees earning the top salary? Use DISTINCT or subquery."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Find the maximum salary that is strictly less than the global maximum salary."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Subquery: SELECT MAX(salary) FROM Employee WHERE salary < (SELECT MAX(salary) FROM Employee)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Using LIMIT 1 OFFSET 1 directly fails to return NULL if fewer than 2 distinct rows exist unless wrapped in a SELECT subquery."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "SELECT MAX(salary) naturally evaluates to NULL if the WHERE clause filters out all matching records."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-dbms-normalization",
+    "slug": "dbms-bcnf-condition",
+    "title": "Boyce-Codd Normal Form (BCNF)",
+    "difficulty": "Medium",
+    "category": "DBMS and SQL",
+    "subtopic": "Relational Design & Normalization",
+    "type": "mcq",
+    "description": "A relational schema R is in Boyce-Codd Normal Form (BCNF) if for every non-trivial functional dependency X -> Y:",
+    "options": [
+      "X is a superkey of R",
+      "Y is a prime attribute",
+      "X is a candidate key and Y is a candidate key",
+      "R has no multi-valued dependencies"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! In BCNF, the determinant (LHS) of every functional dependency must be a superkey.",
+      "Y being prime is allowed in 3NF, but BCNF strictly disallows this.",
+      "X must be a superkey, but Y does not need to be a candidate key.",
+      "Multi-valued dependencies relate to 4NF, not BCNF."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "BCNF is a stricter version of 3NF without the relaxation for prime RHS attributes."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Focus on the determinant (left hand side X)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "In BCNF, for every X -> Y, X must uniquely identify every tuple."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Don't confuse 3NF (which allows Y as prime attribute) with BCNF."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "BCNF guarantees that all redundancy based on functional dependencies is eliminated."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-dbms-acid",
+    "slug": "dbms-isolation-phantom-reads",
+    "title": "Transaction Isolation & Phantom Reads",
+    "difficulty": "Hard",
+    "category": "DBMS and SQL",
+    "subtopic": "Transactions & ACID",
+    "type": "mcq",
+    "description": "Which SQL Transaction Isolation Level is the minimum level required to prevent Phantom Reads?",
+    "options": [
+      "Read Committed",
+      "Repeatable Read",
+      "Serializable",
+      "Read Uncommitted"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Read Committed permits both non-repeatable reads and phantom reads.",
+      "Repeatable Read prevents dirty and non-repeatable reads, but standard ANSI SQL allows phantom reads.",
+      "Correct! Serializable is the highest isolation level and prevents dirty reads, non-repeatable reads, and phantom reads using range locks or snapshot serializability.",
+      "Read Uncommitted allows dirty reads."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Phantom reads occur when a transaction re-runs a query with a WHERE clause and finds new rows inserted by another committed transaction."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Preventing phantom reads requires range locking across missing rows."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "ANSI SQL specifies 4 levels: Read Uncommitted < Read Committed < Repeatable Read < Serializable."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Only Serializable guarantees phantom-free execution across all databases."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Serializable executes concurrent transactions as if they ran in strict serial order."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-oop-diamond",
+    "slug": "oop-diamond-problem-inheritance",
+    "title": "The Diamond Problem in Multiple Inheritance",
+    "difficulty": "Easy",
+    "category": "OOP and Programming",
+    "subtopic": "Inheritance & Polymorphism",
+    "type": "mcq",
+    "description": "What is the 'Diamond Problem' in Object-Oriented Programming?",
+    "options": [
+      "Memory leak caused by circular object references in garbage collection",
+      "Ambiguity when a class inherits from two classes that both inherit from the same base class",
+      "When a subclass overrides a final method declared in an interface",
+      "When a singleton pattern is instantiated on multiple CPU cores"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Circular references are an issue for reference counting, not the diamond problem.",
+      "Correct! If Class B and C inherit from A, and D inherits from both B and C, calling an inherited method of A causes ambiguity as to which path to resolve.",
+      "Final methods cannot be overridden, but that is a compilation error.",
+      "Multi-core singleton instantiation is a race condition issue."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Picture an inheritance diagram shaped like a diamond: A at top, B and C in middle, D at bottom."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "If A defines `foo()`, does D get B's `foo()` or C's `foo()`?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Languages like C++ resolve this with virtual inheritance; Java avoids it by disallowing multiple class inheritance."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Look for method resolution ambiguity."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "The Diamond Problem is the classic multiple inheritance ambiguity resolved via C3 linearization (Python) or interfaces (Java)."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-oop-deepcopy",
+    "slug": "oop-shallow-vs-deep-copy",
+    "title": "Shallow Copy vs Deep Copy",
+    "difficulty": "Medium",
+    "category": "OOP and Programming",
+    "subtopic": "Object Lifecycle & Memory",
+    "type": "mcq",
+    "description": "When copying an object containing nested objects, what is the key difference between a Shallow Copy and a Deep Copy?",
+    "options": [
+      "A shallow copy copies only private fields, while a deep copy copies public fields",
+      "A shallow copy copies primitive values and reference pointers, while a deep copy recursively duplicates all nested objects",
+      "A shallow copy is stored on the stack, while a deep copy is stored in the database",
+      "A shallow copy creates an immutable object, while a deep copy creates a mutable object"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Access modifiers (public/private) do not dictate shallow vs deep copying.",
+      "Correct! In a shallow copy, nested objects share the same memory addresses. Mutating a nested property affects both copies. A deep copy clones the entire object graph.",
+      "Both copied objects reside in memory.",
+      "Mutability is unrelated to copy depth."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What happens if object A has a list, and you shallow copy A to B, then append an item to B's list?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Shallow copy duplicates pointer addresses; deep copy duplicates the underlying memory."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Deep copy is recursive through the object tree."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Look for pointer copying vs recursive duplication."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Deep copy isolates changes by ensuring no references are shared."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-arch-cache",
+    "slug": "arch-cache-miss-types",
+    "title": "The 3 C's of Cache Misses",
+    "difficulty": "Medium",
+    "category": "Computer Architecture",
+    "subtopic": "Memory Hierarchy & Cache",
+    "type": "mcq",
+    "description": "Which type of cache miss occurs when multiple memory blocks map to the exact same cache set, even when total cache capacity is not exceeded?",
+    "options": [
+      "Compulsory Miss (Cold miss)",
+      "Conflict Miss (Collision)",
+      "Capacity Miss",
+      "Coherence Miss"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Compulsory miss occurs the very first time a memory block is referenced.",
+      "Correct! Conflict misses happen in direct-mapped or set-associative caches when distinct addresses compete for the same slot.",
+      "Capacity miss happens when the working set exceeds total cache size regardless of associativity.",
+      "Coherence miss happens in multi-core systems when invalidation messages invalidate a local cache line."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Think about collisions in hash tables when two keys hash to the same bucket."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Increasing associativity (e.g. from 2-way to 4-way) reduces this miss type."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Mark Hill's 3Cs: Compulsory, Capacity, Conflict."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "A conflict miss only occurs because associativity is limited."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Conflict misses are caused by mapping collisions and are resolved with fully associative caches."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-arch-hazards",
+    "slug": "arch-pipelining-hazards",
+    "title": "CPU Pipeline Hazards",
+    "difficulty": "Hard",
+    "category": "Computer Architecture",
+    "subtopic": "CPU Pipelining & Performance",
+    "type": "mcq",
+    "description": "In a 5-stage RISC instruction pipeline, what is a 'Data Hazard' (Read-After-Write / RAW) and how is it primarily resolved with minimal clock penalty?",
+    "options": [
+      "When instruction memory port is blocked; resolved by power cycling",
+      "When an instruction depends on the unwritten result of a prior instruction; resolved using Operand Forwarding (Bypassing)",
+      "When a branch instruction fails; resolved by disabling the ALU",
+      "When cache lines are corrupted; resolved by ECC parity reload"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Port blockage is a structural hazard.",
+      "Correct! A RAW hazard occurs when instruction j needs data produced by instruction i. Operand forwarding routes the computed result directly from the ALU output back to the ALU input without waiting for write-back.",
+      "Branch misprediction is a control hazard.",
+      "Cache parity is an ECC error."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "If `ADD R1, R2, R3` is followed by `SUB R4, R1, R5`, when is R1 available?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Does the execution stage need to wait for write-back stage, or can a bypass wire forward the result?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Forwarding passes the output from EX/MEM or MEM/WB pipeline registers directly to the EX stage."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Operand forwarding avoids pipeline stalls for ALU-to-ALU dependencies."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Hardware forwarding eliminates RAW stall cycles for arithmetic instructions."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-sec-sqli",
+    "slug": "sec-sql-injection-prevention",
+    "title": "SQL Injection Prevention",
+    "difficulty": "Easy",
+    "category": "Cybersecurity",
+    "subtopic": "Web Security & Secure Coding",
+    "type": "mcq",
+    "description": "What is the most robust and secure defense against SQL Injection vulnerabilities in backend web applications?",
+    "options": [
+      "Blacklisting single quotes using regular expression replace filters",
+      "Using Parameterized Queries (Prepared Statements)",
+      "Encoding the SQL query using Base64 before sending it to the database",
+      "Running the database server on a non-standard port"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Blacklists are easily bypassed using alternate character encodings or hex notation.",
+      "Correct! Prepared statements treat user input strictly as parameters/data rather than executable SQL code, preventing injection completely.",
+      "Base64 is obfuscation, not security; once decoded it executes directly.",
+      "Port security does not prevent SQL injection."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Separating SQL code logic from user-supplied data ensures the parser never treats input as syntax."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Prepared statements pre-compile the SQL statement structure."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Parameters are sent separately after the database has already compiled the query tree."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Always use prepared statements / parameterized ORM bindings."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Parameterized queries eliminate SQL injection by ensuring input is never parsed as code."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-aptitude-work",
+    "slug": "aptitude-time-and-work",
+    "title": "Aptitude: Time and Work",
+    "difficulty": "Easy",
+    "category": "Aptitude",
+    "subtopic": "Quantitative Aptitude",
+    "type": "mcq",
+    "description": "A can complete a piece of work in 12 days, and B can complete the same work in 24 days. If they work together, in how many days will the entire work be completed?",
+    "options": [
+      "6 days",
+      "8 days",
+      "10 days",
+      "18 days"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "6 days would be half of A's time, but B is slower.",
+      "Correct! Work done by A in 1 day = 1/12. Work done by B in 1 day = 1/24. Together = 1/12 + 1/24 = 3/24 = 1/8. Hence 8 days.",
+      "10 days is incorrect.",
+      "18 days is the simple average, which is incorrect for parallel rates."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Rate of work is 1/days. Total rate = Rate(A) + Rate(B)."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Formula: (A * B) / (A + B)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "(12 * 24) / (12 + 24) = 288 / 36 = 8 days."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Check arithmetic: 288 divided by 36 equals 8."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Together they complete 1/8 of the work daily, taking 8 days total."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-aptitude-speed",
+    "slug": "aptitude-train-speed-distance",
+    "title": "Speed, Time & Distance: Train Crossing a Pole",
+    "difficulty": "Medium",
+    "category": "Aptitude",
+    "subtopic": "Arithmetic & Motion",
+    "type": "mcq",
+    "description": "A train 180 meters long is travelling at a speed of 54 km/hr. How many seconds will it take to pass an electric pole?",
+    "options": [
+      "10 seconds",
+      "12 seconds",
+      "15 seconds",
+      "18 seconds"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "10 seconds corresponds to 64.8 km/hr.",
+      "Correct! Convert speed: 54 * (5/18) = 15 m/s. Time = Distance / Speed = 180 / 15 = 12 seconds.",
+      "15 seconds corresponds to 43.2 km/hr.",
+      "18 seconds is incorrect."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Convert km/hr to m/s by multiplying by 5/18."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "54 * 5 / 18 = 15 m/s."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Time = Length of train / Speed = 180 / 15."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "180 / 15 = 12."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "The train covers its own length (180m) at 15 m/s in exactly 12 seconds."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-logic-syllogism",
+    "slug": "logic-syllogisms-deduction",
+    "title": "Logical Deductions: Syllogisms",
+    "difficulty": "Easy",
+    "category": "Logical Reasoning",
+    "subtopic": "Deductive Logic",
+    "type": "mcq",
+    "description": "Statements:\n1. All engineers are problem solvers.\n2. Some problem solvers are programmers.\n\nConclusions:\nI. Some engineers are programmers.\nII. All problem solvers are engineers.",
+    "options": [
+      "Only conclusion I follows",
+      "Only conclusion II follows",
+      "Neither conclusion I nor II follows",
+      "Both conclusions follow"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Conclusion I is possible but not guaranteed (middle term 'problem solvers' is not distributed).",
+      "Conclusion II is invalid because only 'some' problem solvers might be engineers.",
+      "Correct! Neither conclusion definitely follows from the premises.",
+      "Both is incorrect."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Draw Venn diagrams for Engineers, Problem Solvers, and Programmers."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Can the Programmer circle overlap Problem Solvers without touching Engineers?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Yes! Programmers can intersect Problem Solvers outside of Engineers."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "A conclusion must be true in ALL valid Venn diagrams."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Since a counterexample exists where programmers don't touch engineers, neither conclusion follows."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-verbal-grammar",
+    "slug": "verbal-subject-verb-agreement",
+    "title": "Verbal Ability: Subject-Verb Agreement",
+    "difficulty": "Easy",
+    "category": "English and Verbal Ability",
+    "subtopic": "Grammar & Error Spotting",
+    "type": "mcq",
+    "description": "Select the sentence with correct grammatical agreement:",
+    "options": [
+      "Each of the students have submitted their project.",
+      "Each of the students has submitted his or her project.",
+      "Neither the developer nor the designers was ready.",
+      "The committee have decided to postpone the assessment."
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "'Each' is grammatically singular and requires a singular verb 'has', not 'have'.",
+      "Correct! 'Each' is indefinite singular, requiring the singular auxiliary 'has'.",
+      "When connecting with 'neither...nor', the verb agrees with the closer subject ('designers' -> were).",
+      "Collective nouns acting as a single unit in American/standard English take singular 'has'."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "'Each' of the X is grammatically singular."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Singular pronoun requires singular verb 'has'."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Look for 'Each ... has'."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Avoid being misled by plural object of preposition 'students'."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "'Each of the students has submitted...' is grammatically standard."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-comm-star",
+    "slug": "comm-star-framework-response",
+    "title": "Interview Communication: STAR Technique",
+    "difficulty": "Medium",
+    "category": "Communication and Interviews",
+    "subtopic": "Behavioral Interviews",
+    "type": "mcq",
+    "description": "When answering behavioral interview questions like 'Tell me about a time you handled conflict', what does the STAR framework stand for?",
+    "options": [
+      "Strategy, Timeline, Action, Review",
+      "Situation, Task, Action, Result",
+      "Solution, Team, Assessment, Resolution",
+      "Summary, Theory, Application, Results"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect acronym.",
+      "Correct! Situation (context), Task (goal/challenge), Action (specific steps you personally took), Result (quantified outcome and learning).",
+      "Incorrect acronym.",
+      "Incorrect acronym."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "The S stands for the background Situation."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "T = Task, A = Action, R = Result."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "STAR anchors behavioral answers with concrete facts."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Always emphasize 'Action' (what you did) and 'Result' (the metrics achieved)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "STAR ensures complete, structured behavioral interview responses."
+      }
+    ]
+  },
+  {
+    "id": "q-3sum",
+    "slug": "3sum",
+    "title": "3Sum: Triplet Sum to Zero",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Arrays & Two Pointers",
+    "type": "coding",
+    "description": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.",
+    "examples": [
+      {
+        "input": "nums = [-1,0,1,2,-1,-4]",
+        "output": "[[-1,-1,2],[-1,0,1]]"
+      },
+      {
+        "input": "nums = [0,1,1]",
+        "output": "[]"
+      },
+      {
+        "input": "nums = [0,0,0]",
+        "output": "[[0,0,0]]"
+      }
+    ],
+    "constraints": [
+      "3 <= nums.length <= 3000",
+      "-10^5 <= nums[i] <= 10^5"
+    ],
+    "starterCode": {
+      "javascript": "function threeSum(nums) {\n    nums.sort((a, b) => a - b);\n    const res = [];\n    for (let i = 0; i < nums.length - 2; i++) {\n        if (i > 0 && nums[i] === nums[i - 1]) continue;\n        let left = i + 1, right = nums.length - 1;\n        while (left < right) {\n            const sum = nums[i] + nums[left] + nums[right];\n            if (sum === 0) {\n                res.push([nums[i], nums[left], nums[right]]);\n                while (left < right && nums[left] === nums[left + 1]) left++;\n                while (left < right && nums[right] === nums[right - 1]) right--;\n                left++;\n                right--;\n            } else if (sum < 0) {\n                left++;\n            } else {\n                right--;\n            }\n        }\n    }\n    return res;\n}",
+      "python": "def threeSum(nums):\n    nums.sort()\n    res = []\n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i-1]: continue\n        l, r = i + 1, len(nums) - 1\n        while l < r:\n            s = nums[i] + nums[l] + nums[r]\n            if s == 0:\n                res.append([nums[i], nums[l], nums[r]])\n                while l < r and nums[l] == nums[l+1]: l += 1\n                while l < r and nums[r] == nums[r-1]: r -= 1\n                l += 1\n                r -= 1\n            elif s < 0:\n                l += 1\n            else:\n                r -= 1\n    return res"
+    },
+    "testCases": [
+      {
+        "input": {
+          "nums": [
+            -1,
+            0,
+            1,
+            2,
+            -1,
+            -4
+          ]
+        },
+        "expectedOutput": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            0,
+            1,
+            1
+          ]
+        },
+        "expectedOutput": [],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            0,
+            0,
+            0
+          ]
+        },
+        "expectedOutput": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Can sorting the array first turn this O(N^3) brute-force into an O(N^2) two-pointer search?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Sort nums. Fix the first element nums[i]. Then use two pointers left and right to find pairs where nums[left] + nums[right] === -nums[i]."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "To avoid duplicates: if nums[i] === nums[i - 1], skip with `continue`. When a valid triplet is found, advance both left and right while skipping duplicate values."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Make sure you skip duplicates after recording the triplet, not before, otherwise you might skip valid solutions like [0, 0, 0]."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Sorting takes O(N log N). Outer loop runs N times, inner two-pointer pass runs O(N), yielding total time O(N^2) and O(1) auxiliary space beyond the output."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/3sum/"
+    }
+  },
+  {
+    "id": "q-container-water",
+    "slug": "container-with-most-water",
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Two Pointers",
+    "type": "coding",
+    "description": "Given an integer array `height` of length `n`, find two lines that together with the x-axis form a container such that the container contains the most water.\n\nReturn the maximum amount of water a container can store.\n\nArea = min(height[left], height[right]) * (right - left).",
+    "examples": [
+      {
+        "input": "height = [1,8,6,2,5,4,8,3,7]",
+        "output": "49"
+      },
+      {
+        "input": "height = [1,1]",
+        "output": "1"
+      }
+    ],
+    "constraints": [
+      "n == height.length",
+      "2 <= n <= 10^5",
+      "0 <= height[i] <= 10^4"
+    ],
+    "starterCode": {
+      "javascript": "function maxArea(height) {\n    let left = 0, right = height.length - 1;\n    let maxWater = 0;\n    while (left < right) {\n        const currentWater = Math.min(height[left], height[right]) * (right - left);\n        maxWater = Math.max(maxWater, currentWater);\n        if (height[left] < height[right]) {\n            left++;\n        } else {\n            right--;\n        }\n    }\n    return maxWater;\n}",
+      "python": "def maxArea(height):\n    l, r = 0, len(height) - 1\n    ans = 0\n    while l < r:\n        w = min(height[l], height[r]) * (r - l)\n        ans = max(ans, w)\n        if height[l] < height[r]:\n            l += 1\n        else:\n            r -= 1\n    return ans"
+    },
+    "testCases": [
+      {
+        "input": {
+          "height": [
+            1,
+            8,
+            6,
+            2,
+            5,
+            4,
+            8,
+            3,
+            7
+          ]
+        },
+        "expectedOutput": 49,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "height": [
+            1,
+            1
+          ]
+        },
+        "expectedOutput": 1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "height": [
+            4,
+            3,
+            2,
+            1,
+            4
+          ]
+        },
+        "expectedOutput": 16,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Width between pointers shrinks on every step. How can you only ever move the pointer that has a chance of increasing the area?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Start with maximum width: left = 0, right = height.length - 1. The height of the container is limited by the shorter line."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Compute area = min(height[left], height[right]) * (right - left). Always advance the pointer pointing to the shorter vertical bar."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "If height[left] === height[right], advancing either pointer is mathematically safe."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Greedy two-pointer approach proves optimal in O(N) time and O(1) space because moving the taller line inward can never increase the trapped water."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/container-with-most-water/"
+    }
+  },
+  {
+    "id": "q-product-except-self",
+    "slug": "product-of-array-except-self",
+    "title": "Product of Array Except Self",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Arrays & Prefix Products",
+    "type": "coding",
+    "description": "Given an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nYou must write an algorithm that runs in `O(n)` time and without using the division operation.",
+    "examples": [
+      {
+        "input": "nums = [1,2,3,4]",
+        "output": "[24,12,8,6]"
+      },
+      {
+        "input": "nums = [-1,1,0,-3,3]",
+        "output": "[0,0,9,0,0]"
+      }
+    ],
+    "constraints": [
+      "2 <= nums.length <= 10^5",
+      "-30 <= nums[i] <= 30"
+    ],
+    "starterCode": {
+      "javascript": "function productExceptSelf(nums) {\n    const n = nums.length;\n    const res = new Array(n).fill(1);\n    let prefix = 1;\n    for (let i = 0; i < n; i++) {\n        res[i] = prefix;\n        prefix *= nums[i];\n    }\n    let suffix = 1;\n    for (let i = n - 1; i >= 0; i--) {\n        res[i] *= suffix;\n        suffix *= nums[i];\n    }\n    return res;\n}",
+      "python": "def productExceptSelf(nums):\n    n = len(nums)\n    res = [1] * n\n    prefix = 1\n    for i in range(n):\n        res[i] = prefix\n        prefix *= nums[i]\n    suffix = 1\n    for i in range(n - 1, -1, -1):\n        res[i] *= suffix\n        suffix *= nums[i]\n    return res"
+    },
+    "testCases": [
+      {
+        "input": {
+          "nums": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "expectedOutput": [
+          24,
+          12,
+          8,
+          6
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            -1,
+            1,
+            0,
+            -3,
+            3
+          ]
+        },
+        "expectedOutput": [
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "The product of all elements except nums[i] equals (product of all elements before i) * (product of all elements after i)."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Construct prefix products in a left-to-right pass, then suffix products in a right-to-left pass."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "First pass: store prefix products into output array res. Second pass: keep a running suffix variable from right to left, multiplying res[i] by suffix."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Notice the base prefix at index 0 is 1, and base suffix at index n-1 is 1."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Achieves O(N) time with O(1) auxiliary space (excluding the returned result array), strictly satisfying no-division constraints."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/product-of-array-except-self/"
+    }
+  },
+  {
+    "id": "q-merge-two-sorted-lists",
+    "slug": "merge-two-sorted-lists",
+    "title": "Merge Two Sorted Linked Lists",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Linked Lists",
+    "type": "coding",
+    "description": "You are given the heads of two sorted linked lists `list1` and `list2`.\n\nMerge the two lists into one sorted list and return the head of the merged linked list.",
+    "examples": [
+      {
+        "input": "list1 = [1,2,4], list2 = [1,3,4]",
+        "output": "[1,1,2,3,4,4]"
+      },
+      {
+        "input": "list1 = [], list2 = []",
+        "output": "[]"
+      },
+      {
+        "input": "list1 = [], list2 = [0]",
+        "output": "[0]"
+      }
+    ],
+    "constraints": [
+      "The number of nodes in both lists is in the range [0, 50].",
+      "-100 <= Node.val <= 100",
+      "Both lists are sorted in non-decreasing order."
+    ],
+    "starterCode": {
+      "javascript": "function mergeTwoLists(list1, list2) {\n    const dummy = { val: 0, next: null };\n    let curr = dummy;\n    while (list1 && list2) {\n        if (list1.val <= list2.val) {\n            curr.next = list1;\n            list1 = list1.next;\n        } else {\n            curr.next = list2;\n            list2 = list2.next;\n        }\n        curr = curr.next;\n    }\n    curr.next = list1 || list2;\n    return dummy.next;\n}",
+      "python": "def mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    cur = dummy\n    while l1 and l2:\n        if l1.val <= l2.val:\n            cur.next = l1\n            l1 = l1.next\n        else:\n            cur.next = l2\n            l2 = l2.next\n        cur = cur.next\n    cur.next = l1 or l2\n    return dummy.next"
+    },
+    "testCases": [
+      {
+        "input": {
+          "list1": [
+            1,
+            2,
+            4
+          ],
+          "list2": [
+            1,
+            3,
+            4
+          ]
+        },
+        "expectedOutput": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4
+        ],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "list1": [],
+          "list2": []
+        },
+        "expectedOutput": [],
+        "isHidden": false
+      },
+      {
+        "input": {
+          "list1": [],
+          "list2": [
+            0
+          ]
+        },
+        "expectedOutput": [
+          0
+        ],
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "A dummy head node simplifies boundary pointer updates when creating the merged list."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Compare list1.val and list2.val; append the smaller node to your current pointer and advance that list's pointer."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "When one list runs out, directly attach the remaining elements of the other non-null list via curr.next = list1 || list2."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Return dummy.next, not dummy."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(N + M) where N and M are the lengths of the lists. Space: O(1) in-place pointer splicing."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/merge-two-sorted-lists/"
+    }
+  },
+  {
+    "id": "q-max-depth-binary-tree",
+    "slug": "maximum-depth-of-binary-tree",
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Trees & Recursion",
+    "type": "coding",
+    "description": "Given the root of a binary tree, return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+    "examples": [
+      {
+        "input": "root = [3,9,20,null,null,15,7]",
+        "output": "3"
+      },
+      {
+        "input": "root = [1,null,2]",
+        "output": "2"
+      }
+    ],
+    "constraints": [
+      "The number of nodes in the tree is in the range [0, 10^4].",
+      "-100 <= Node.val <= 100"
+    ],
+    "starterCode": {
+      "javascript": "function maxDepth(root) {\n    if (!root) return 0;\n    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));\n}",
+      "python": "def maxDepth(root):\n    if not root: return 0\n    return 1 + max(maxDepth(root.left), maxDepth(root.right))"
+    },
+    "testCases": [
+      {
+        "input": {
+          "root": [
+            3,
+            9,
+            20,
+            null,
+            null,
+            15,
+            7
+          ]
+        },
+        "expectedOutput": 3,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "root": [
+            1,
+            null,
+            2
+          ]
+        },
+        "expectedOutput": 2,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "root": []
+        },
+        "expectedOutput": 0,
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What is the depth of an empty tree? What is the depth of a tree given the depths of its left and right subtrees?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Base case: if root is null, return 0. Recursive case: 1 + max(leftDepth, rightDepth)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Call maxDepth recursively on root.left and root.right. Return 1 + Math.max(leftDepth, rightDepth)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Make sure you add 1 for the current node itself."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(N) where N is the total nodes visited. Space: O(H) call stack where H is tree height."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+    }
+  },
+  {
+    "id": "q-validate-bst",
+    "slug": "validate-binary-search-tree",
+    "title": "Validate Binary Search Tree",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Trees & BST",
+    "type": "coding",
+    "description": "Given the root of a binary tree, determine if it is a valid binary search tree (BST).\n\nA valid BST requires that for every node:\n- All keys in its left subtree are strictly less than node.val\n- All keys in its right subtree are strictly greater than node.val",
+    "examples": [
+      {
+        "input": "root = [2,1,3]",
+        "output": "true"
+      },
+      {
+        "input": "root = [5,1,4,null,null,3,6]",
+        "output": "false"
+      }
+    ],
+    "constraints": [
+      "The number of nodes in the tree is in the range [1, 10^4].",
+      "-2^31 <= Node.val <= 2^31 - 1"
+    ],
+    "starterCode": {
+      "javascript": "function isValidBST(root, min = -Infinity, max = Infinity) {\n    if (!root) return true;\n    if (root.val <= min || root.val >= max) return false;\n    return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);\n}",
+      "python": "def isValidBST(root, low=float('-inf'), high=float('inf')):\n    if not root: return True\n    if not (low < root.val < high): return False\n    return isValidBST(root.left, low, root.val) and isValidBST(root.right, root.val, high)"
+    },
+    "testCases": [
+      {
+        "input": {
+          "root": [
+            2,
+            1,
+            3
+          ]
+        },
+        "expectedOutput": true,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "root": [
+            5,
+            1,
+            4,
+            null,
+            null,
+            3,
+            6
+          ]
+        },
+        "expectedOutput": false,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "root": [
+            2,
+            2,
+            2
+          ]
+        },
+        "expectedOutput": false,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Checking only that root.left < root and root.right > root is NOT enough! All descendants in the left subtree must be less than the root."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Pass valid ranges (minBound, maxBound) down the recursive calls."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "When going left: new upper bound is root.val. When going right: new lower bound is root.val. If root.val <= min or root.val >= max, return false."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Beware of duplicate values. A valid BST has strictly less and strictly greater values (<= or >= are invalid)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(N) visiting each node once. Space: O(H) recursion stack where H is the height of the tree."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/validate-binary-search-tree/"
+    }
+  },
+  {
+    "id": "q-climbing-stairs",
+    "slug": "climbing-stairs",
+    "title": "Climbing Stairs (DP)",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Dynamic Programming",
+    "type": "coding",
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    "examples": [
+      {
+        "input": "n = 2",
+        "output": "2",
+        "explanation": "1 step + 1 step, or 2 steps."
+      },
+      {
+        "input": "n = 3",
+        "output": "3",
+        "explanation": "1+1+1, 1+2, or 2+1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "starterCode": {
+      "javascript": "function climbStairs(n) {\n    if (n <= 2) return n;\n    let prev2 = 1, prev1 = 2;\n    for (let i = 3; i <= n; i++) {\n        const current = prev1 + prev2;\n        prev2 = prev1;\n        prev1 = current;\n    }\n    return prev1;\n}",
+      "python": "def climbStairs(n):\n    if n <= 2: return n\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b"
+    },
+    "testCases": [
+      {
+        "input": {
+          "n": 2
+        },
+        "expectedOutput": 2,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "n": 3
+        },
+        "expectedOutput": 3,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "n": 5
+        },
+        "expectedOutput": 8,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "n": 1
+        },
+        "expectedOutput": 1,
+        "isHidden": true
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "To reach step n, you could have come from step (n-1) with a 1-step jump or from step (n-2) with a 2-step jump."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "ways(n) = ways(n-1) + ways(n-2). This is the Fibonacci sequence!"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Store just the last two values prev2 and prev1 to avoid O(N) array allocation."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Handle base cases n = 1 (1 way) and n = 2 (2 ways)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(N), Space: O(1) space-optimized bottom-up DP."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/climbing-stairs/"
+    }
+  },
+  {
+    "id": "q-coin-change",
+    "slug": "coin-change",
+    "title": "Coin Change: Minimum Coins Required",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Dynamic Programming",
+    "type": "coding",
+    "description": "You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.\n\nReturn the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.",
+    "examples": [
+      {
+        "input": "coins = [1,2,5], amount = 11",
+        "output": "3",
+        "explanation": "11 = 5 + 5 + 1"
+      },
+      {
+        "input": "coins = [2], amount = 3",
+        "output": "-1"
+      },
+      {
+        "input": "coins = [1], amount = 0",
+        "output": "0"
+      }
+    ],
+    "constraints": [
+      "1 <= coins.length <= 12",
+      "1 <= coins[i] <= 2^31 - 1",
+      "0 <= amount <= 10^4"
+    ],
+    "starterCode": {
+      "javascript": "function coinChange(coins, amount) {\n    const dp = new Array(amount + 1).fill(Infinity);\n    dp[0] = 0;\n    for (let i = 1; i <= amount; i++) {\n        for (const coin of coins) {\n            if (i - coin >= 0) {\n                dp[i] = Math.min(dp[i], dp[i - coin] + 1);\n            }\n        }\n    }\n    return dp[amount] === Infinity ? -1 : dp[amount];\n}",
+      "python": "def coinChange(coins, amount):\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for i in range(1, amount + 1):\n        for c in coins:\n            if i - c >= 0:\n                dp[i] = min(dp[i], dp[i - c] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1"
+    },
+    "testCases": [
+      {
+        "input": {
+          "coins": [
+            1,
+            2,
+            5
+          ],
+          "amount": 11
+        },
+        "expectedOutput": 3,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "coins": [
+            2
+          ],
+          "amount": 3
+        },
+        "expectedOutput": -1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "coins": [
+            1
+          ],
+          "amount": 0
+        },
+        "expectedOutput": 0,
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Why doesn't a greedy algorithm always work? Consider coins = [1, 3, 4] and amount = 6. Greedy takes 4 + 1 + 1 (3 coins), but optimal is 3 + 3 (2 coins)!"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Use 1D bottom-up dynamic programming. Let dp[i] be the minimum coins to make amount i."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Initialize dp array of size (amount + 1) with Infinity. Set dp[0] = 0. For each value from 1 to amount, loop over all coins c: if i - c >= 0, dp[i] = min(dp[i], dp[i - c] + 1)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "If dp[amount] remains Infinity, return -1."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time Complexity: O(amount * len(coins)). Space Complexity: O(amount)."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/coin-change/"
+    }
+  },
+  {
+    "id": "q-number-of-islands",
+    "slug": "number-of-islands",
+    "title": "Number of Islands (BFS / DFS)",
+    "difficulty": "Medium",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Graphs & BFS / DFS",
+    "type": "coding",
+    "description": "Given an `m x n` 2D binary grid `grid` which represents a map of '1's (land) and '0's (water), return the number of islands.\n\nAn island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.",
+    "examples": [
+      {
+        "input": "grid = [\n  [\"1\",\"1\",\"1\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"1\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"0\",\"0\"]\n]",
+        "output": "1"
+      },
+      {
+        "input": "grid = [\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"1\",\"1\",\"0\",\"0\",\"0\"],\n  [\"0\",\"0\",\"1\",\"0\",\"0\"],\n  [\"0\",\"0\",\"0\",\"1\",\"1\"]\n]",
+        "output": "3"
+      }
+    ],
+    "constraints": [
+      "m == grid.length",
+      "n == grid[i].length",
+      "1 <= m, n <= 300",
+      "grid[i][j] is '0' or '1'."
+    ],
+    "starterCode": {
+      "javascript": "function numIslands(grid) {\n    if (!grid || grid.length === 0) return 0;\n    const m = grid.length, n = grid[0].length;\n    let count = 0;\n    function dfs(r, c) {\n        if (r < 0 || r >= m || c < 0 || c >= n || grid[r][c] !== '1') return;\n        grid[r][c] = '0'; // mark visited\n        dfs(r + 1, c);\n        dfs(r - 1, c);\n        dfs(r, c + 1);\n        dfs(r, c - 1);\n    }\n    for (let r = 0; r < m; r++) {\n        for (let c = 0; c < n; c++) {\n            if (grid[r][c] === '1') {\n                count++;\n                dfs(r, c);\n            }\n        }\n    }\n    return count;\n}",
+      "python": "def numIslands(grid):\n    if not grid: return 0\n    m, n = len(grid), len(grid[0])\n    count = 0\n    def dfs(r, c):\n        if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != '1': return\n        grid[r][c] = '0'\n        dfs(r + 1, c)\n        dfs(r - 1, c)\n        dfs(r, c + 1)\n        dfs(r, c - 1)\n    for r in range(m):\n        for c in range(n):\n            if grid[r][c] == '1':\n                count += 1\n                dfs(r, c)\n    return count"
+    },
+    "testCases": [
+      {
+        "input": {
+          "grid": [
+            [
+              "1",
+              "1",
+              "1",
+              "1",
+              "0"
+            ],
+            [
+              "1",
+              "1",
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "1",
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          ]
+        },
+        "expectedOutput": 1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "grid": [
+            [
+              "1",
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "1",
+              "1"
+            ]
+          ]
+        },
+        "expectedOutput": 3,
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Iterate across the grid. Every time you encounter an unvisited '1', you have discovered a new island!"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Use Depth-First Search (DFS) or Breadth-First Search (BFS) to traverse and 'sink' (mark as '0') all connected land cells."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Check boundaries: r >= 0 && r < m && c >= 0 && c < n. Sink the cell: grid[r][c] = '0'. Recursively visit 4 directions."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Input uses strings '1' and '0', not numbers 1 and 0."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Time: O(M * N) since each cell is visited at most once. Space: O(M * N) worst-case recursion stack."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/number-of-islands/"
+    }
+  },
+  {
+    "id": "q-single-number",
+    "slug": "single-number",
+    "title": "Single Number (XOR Bit Manipulation)",
+    "difficulty": "Easy",
+    "category": "Data Structures and Algorithms",
+    "subtopic": "Bit Manipulation",
+    "type": "coding",
+    "description": "Given a non-empty array of integers `nums`, every element appears twice except for one. Find that single one.\n\nYou must implement a solution with a linear runtime complexity and use only constant extra space O(1).",
+    "examples": [
+      {
+        "input": "nums = [2,2,1]",
+        "output": "1"
+      },
+      {
+        "input": "nums = [4,1,2,1,2]",
+        "output": "4"
+      },
+      {
+        "input": "nums = [1]",
+        "output": "1"
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 3 * 10^4",
+      "-3 * 10^4 <= nums[i] <= 3 * 10^4",
+      "Each element appears twice except for one."
+    ],
+    "starterCode": {
+      "javascript": "function singleNumber(nums) {\n    let result = 0;\n    for (const num of nums) {\n        result ^= num;\n    }\n    return result;\n}",
+      "python": "def singleNumber(nums):\n    res = 0\n    for n in nums:\n        res ^= n\n    return res"
+    },
+    "testCases": [
+      {
+        "input": {
+          "nums": [
+            2,
+            2,
+            1
+          ]
+        },
+        "expectedOutput": 1,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            4,
+            1,
+            2,
+            1,
+            2
+          ]
+        },
+        "expectedOutput": 4,
+        "isHidden": false
+      },
+      {
+        "input": {
+          "nums": [
+            1
+          ]
+        },
+        "expectedOutput": 1,
+        "isHidden": false
+      }
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What bitwise operator has the property that X ^ X = 0 and X ^ 0 = X?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "XOR is commutative and associative. XORing all elements together cancels out every paired duplicate, leaving only the unique element!"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Initialize result = 0. Loop through nums and do result ^= nums[i]. Return result."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Requires zero extra space O(1) and runs in single pass O(N)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "A ^ B ^ A = (A ^ A) ^ B = 0 ^ B = B. This elegant bitwise identity achieves true O(1) auxiliary space."
+      }
+    ],
+    "officialLinks": {
+      "leetcode": "https://leetcode.com/problems/single-number/"
+    }
+  },
+  {
+    "id": "q-sql-customers-orders",
+    "slug": "customers-who-never-order",
+    "title": "SQL: Customers Who Never Order (LEFT JOIN)",
+    "difficulty": "Easy",
+    "category": "DBMS and SQL",
+    "subtopic": "Joins & Filtering",
+    "type": "sql",
+    "description": "Given two tables `Customers` (id, name) and `Orders` (id, customerId), write a SQL query to report all customers who never place any order.\n\nReturn the result table in any order with column name 'Customers'.",
+    "schema": "CREATE TABLE Customers (id INT PRIMARY KEY, name VARCHAR(50));\nCREATE TABLE Orders (id INT PRIMARY KEY, customerId INT);",
+    "expectedQuery": "SELECT c.name AS Customers FROM Customers c LEFT JOIN Orders o ON c.id = o.customerId WHERE o.id IS NULL;",
+    "explanation": "A LEFT JOIN retains all records from Customers and attempts to join Orders. For customers who haven't ordered, the joined order columns will be NULL. Filtering with WHERE o.id IS NULL isolates those customers.",
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Think of customers that have NO matching record in the Orders table."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Use a LEFT JOIN between Customers and Orders on Customers.id = Orders.customerId."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "After the LEFT JOIN, filter where Orders.id IS NULL."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Remember to alias the output column as 'Customers': `SELECT name AS Customers`."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "An anti-join using `LEFT JOIN ... WHERE o.id IS NULL` is often more efficient in relational query planners than `NOT IN (subquery)` with NULL edge cases."
+      }
+    ]
+  },
+  {
+    "id": "q-sql-department-top-salaries",
+    "slug": "department-highest-salary",
+    "title": "SQL: Department Highest Salary",
+    "difficulty": "Medium",
+    "category": "DBMS and SQL",
+    "subtopic": "Grouping & Aggregations",
+    "type": "sql",
+    "description": "Write a SQL query to find employees who have the highest salary in each of the departments.\n\nTables:\nEmployee (id, name, salary, departmentId)\nDepartment (id, name)",
+    "schema": "CREATE TABLE Employee (id INT, name VARCHAR(50), salary INT, departmentId INT);\nCREATE TABLE Department (id INT, name VARCHAR(50));",
+    "expectedQuery": "SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary FROM Employee e JOIN Department d ON e.departmentId = d.id WHERE (e.departmentId, e.salary) IN (SELECT departmentId, MAX(salary) FROM Employee GROUP BY departmentId);",
+    "explanation": "We group Employee by departmentId to find MAX(salary), then match employees whose (departmentId, salary) matches this pair.",
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "First find the highest salary in each department using `GROUP BY departmentId` and `MAX(salary)`."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Use a subquery with tuple matching `(departmentId, salary) IN (...)` or a Window Function."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Join Employee with Department, and in the WHERE clause check if (e.departmentId, e.salary) is IN the department MAX subquery."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "If multiple employees share the highest salary in the same department, all should be included."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Tuple filtering `WHERE (dept_id, salary) IN (SELECT dept_id, MAX(salary) ...)` cleanly handles ties."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-dbms-indexes",
+    "slug": "dbms-b-tree-vs-hash-index",
+    "title": "DBMS Indexes: B-Tree vs Hash Indexing",
+    "difficulty": "Medium",
+    "category": "DBMS and SQL",
+    "subtopic": "Indexes & Query Optimization",
+    "type": "mcq",
+    "description": "Why are B-Tree (or B+ Tree) indexes used as the default indexing structure in relational databases like PostgreSQL and MySQL InnoDB instead of Hash indexes?",
+    "options": [
+      "B-Tree indexes provide faster point lookups for exact equality (=) than Hash indexes",
+      "B-Tree indexes efficiently support range queries (BETWEEN, <, >) and ordered scans, which Hash indexes cannot",
+      "Hash indexes require significantly more disk storage than B-Trees",
+      "B-Tree indexes eliminate the need for ACID transaction concurrency control"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Hash indexes have O(1) average lookup for exact equality, which is faster than B-Tree's O(log N).",
+      "Correct! Hash indexes scatter keys across buckets using a hash function, destroying order. B+ Trees maintain sorted order in leaf nodes linked by pointers, making range scans (e.g. WHERE age BETWEEN 20 AND 30) O(log N + k).",
+      "Incorrect: Storage differences are not the fundamental architectural reason.",
+      "Incorrect: Index structures still require page locking and concurrency control regardless."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Consider queries like `WHERE created_at >= '2026-01-01' AND created_at <= '2026-01-31'`."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "What does a hash function do to two consecutive numbers like 100 and 101? It maps them to completely random bucket locations."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Because hash indexes do not preserve order, they cannot assist with range scans or ORDER BY clauses."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "B+ trees store all records in sorted order in the doubly-linked leaf level."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "B+ Trees provide predictable O(log N) operations and sequential leaf traversal, making them the standard choice for general-purpose RDBMS engines."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-dbms-2pl",
+    "slug": "dbms-two-phase-locking",
+    "title": "Concurrency Control: Two-Phase Locking (2PL)",
+    "difficulty": "Hard",
+    "category": "DBMS and SQL",
+    "subtopic": "Transactions & Concurrency",
+    "type": "mcq",
+    "description": "In DBMS Concurrency Control, what property is GUARANTEED by the Strict Two-Phase Locking (Strict 2PL) protocol?",
+    "options": [
+      "Freedom from Deadlocks",
+      "Conflict Serializability and Freedom from Cascading Aborts",
+      "Maximal CPU Utilization without Lock Overhead",
+      "Starvation-Free Transaction Scheduling"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Strict 2PL does NOT prevent deadlocks. In fact, transactions can still enter circular lock waiting.",
+      "Correct! Basic 2PL guarantees Conflict Serializability. Strict 2PL additionally holds all exclusive locks until transaction commit/abort, guaranteeing recoverable schedules free of cascading aborts.",
+      "Incorrect: Locking introduces significant lock waiting overhead.",
+      "Incorrect: Older transactions may starve unless an aging or priority scheme is implemented."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What does holding exclusive locks until the transaction ends prevent other transactions from reading?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "If transaction T1 modifies an item and T2 reads it before T1 commits, what happens if T1 aborts? T2 must abort too (Cascading Abort)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Strict 2PL prevents reading uncommitted data by holding exclusive locks until commit/abort, stopping cascading aborts entirely."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Notice that deadlocks can still happen under 2PL (e.g. T1 holds A waits for B; T2 holds B waits for A)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Strict 2PL is the gold standard concurrency protocol in traditional ACID databases because it ensures serializability and clean crash recovery."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-os-process-threads",
+    "slug": "os-process-vs-thread",
+    "title": "Processes vs Threads: Memory & Context Switching",
+    "difficulty": "Easy",
+    "category": "Operating Systems",
+    "subtopic": "Processes & Threads",
+    "type": "mcq",
+    "description": "Which of the following resources is typically UNIQUE to each thread within the same process, rather than being shared among all threads?",
+    "options": [
+      "Heap Memory and Global Variables",
+      "Open File Descriptors",
+      "Program Counter, Registers, and Execution Stack",
+      "Virtual Address Space and Code Segment"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Shared: All threads in a process share the same heap memory and global state.",
+      "Shared: Open files, sockets, and signal handlers are shared across threads.",
+      "Correct! Each thread has its own private execution context: Program Counter (current instruction), register state, and call stack (local variables).",
+      "Shared: The virtual address space, text/code segment, and data segments are shared."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "If two threads run different functions concurrently, what keeps track of their local function calls and variables?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Think about the call stack and instruction pointer."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Every thread must execute independently, requiring its own registers, PC, and stack space."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Heap and code segments are shared, which is why multi-threaded race conditions occur on heap variables."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Context switching between threads of the same process is faster than process context switching because the MMU page table does not need to be reloaded."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-os-semaphores",
+    "slug": "os-binary-vs-counting-semaphores",
+    "title": "Synchronization: Mutex vs Counting Semaphore",
+    "difficulty": "Medium",
+    "category": "Operating Systems",
+    "subtopic": "Synchronization & Mutexes",
+    "type": "mcq",
+    "description": "What is the fundamental difference between a Mutex (Mutual Exclusion lock) and a Binary Semaphore?",
+    "options": [
+      "A Mutex can only be used on single-core processors, while Semaphores work on multi-core",
+      "A Mutex has the concept of ownership (only the thread that locked it can unlock it), whereas a Semaphore can be signaled by any thread",
+      "A Binary Semaphore can take values from 0 to 10, whereas a Mutex can only take 0 or 1",
+      "Mutexes are implemented entirely in user space without kernel support"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Both work across single-core and multi-core systems.",
+      "Correct! Mutex enforces strict ownership: the thread that acquires the lock must be the one that releases it. Semaphores are signaling mechanisms: thread A can wait while thread B posts/signals.",
+      "Incorrect: A binary semaphore strictly takes values 0 and 1.",
+      "Incorrect: Mutexes often use kernel primitives (e.g. futex on Linux) when contention occurs."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Consider who is allowed to unlock the synchronization primitive."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Mutex = Mutual Exclusion (ownership lock). Semaphore = Signaling mechanism."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "If thread 1 enters a critical section locked with a Mutex, can thread 2 unlock it? No! But thread 2 CAN signal a semaphore."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Ownership enables priority inheritance in mutexes to prevent priority inversion bugs."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Mutexes are designed for protecting shared critical sections with ownership; Semaphores are designed for inter-thread coordination and signaling."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-os-page-replacement",
+    "slug": "os-page-replacement-belady",
+    "title": "Virtual Memory: Belady's Anomaly in FIFO",
+    "difficulty": "Medium",
+    "category": "Operating Systems",
+    "subtopic": "Page Replacement & Memory",
+    "type": "mcq",
+    "description": "What is Belady's Anomaly in Operating Systems virtual memory management?",
+    "options": [
+      "When a page replacement algorithm causes CPU utilization to drop to 0%",
+      "The phenomenon where allocating MORE physical page frames causes MORE page faults under FIFO page replacement",
+      "The failure of LRU to track the least recently accessed page in multi-core systems",
+      "When virtual memory pages exceed the physical address bus capacity"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: That describes Thrashing, not Belady's anomaly.",
+      "Correct! For certain reference strings, increasing the number of page frames under First-In-First-Out (FIFO) increases the total number of page faults.",
+      "Incorrect: Belady's anomaly does NOT occur in stack algorithms like LRU or Optimal.",
+      "Incorrect: That is an architectural address limitation."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Intuition suggests more RAM frames should mean fewer page faults. Does that always hold for FIFO?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Stack algorithms (like LRU) satisfy the inclusion property. FIFO is not a stack algorithm."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "With reference string like 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5, having 4 frames produces 10 faults while 3 frames produces 9 faults."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Belady's anomaly specifically applies to non-stack algorithms like FIFO."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Stack algorithms guarantee that the set of pages in an n-frame memory is always a subset of pages in an (n+1)-frame memory, preventing Belady's Anomaly."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-apt-profit-loss",
+    "slug": "aptitude-profit-loss-markup",
+    "title": "Aptitude: Profit & Loss with Successive Discounts",
+    "difficulty": "Medium",
+    "category": "Aptitude",
+    "subtopic": "Profit, Loss & Discounts",
+    "type": "mcq",
+    "description": "A merchant marks up his goods by 40% above the Cost Price (CP) and then allows two successive discounts of 10% and 10% on the Marked Price (MP). What is his net gain or loss percentage?",
+    "options": [
+      "Gain of 20%",
+      "Gain of 13.4%",
+      "Gain of 15.2%",
+      "Loss of 3.4%"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Successive 10% discounts compound; they are not simply subtracted from 40%.",
+      "Correct! Let CP = 100. MP = 140. After first 10% discount: 140 * 0.9 = 126. After second 10% discount: 126 * 0.9 = 113.4. Selling Price = 113.4. Gain = 113.4 - 100 = 13.4%.",
+      "Incorrect: Review successive discount multiplication.",
+      "Incorrect: The final SP is greater than CP, resulting in a gain."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Assume Cost Price CP = 100 to make percentage calculations straightforward."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Marked Price MP = CP * 1.40 = 140."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Selling Price SP = MP * (1 - 0.10) * (1 - 0.10) = 140 * 0.9 * 0.9 = 140 * 0.81 = 113.4."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Gain % = (SP - CP) / CP * 100 = 13.4%."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Net effective discount of two 10% discounts = 10 + 10 - (10*10)/100 = 19%. 140 * (1 - 0.19) = 113.4. Net profit is 13.4%."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-apt-pipes-cisterns",
+    "slug": "aptitude-pipes-and-cisterns",
+    "title": "Aptitude: Pipes and Cisterns",
+    "difficulty": "Medium",
+    "category": "Aptitude",
+    "subtopic": "Time & Work",
+    "type": "mcq",
+    "description": "Pipe A can fill a tank in 12 hours, Pipe B can fill it in 15 hours, and Pipe C can empty the full tank in 20 hours. If all three pipes are opened simultaneously when the tank is empty, how many hours will it take to fill the tank completely?",
+    "options": [
+      "10 hours",
+      "8 hours",
+      "12 hours",
+      "15 hours"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! LCM of 12, 15, and 20 is 60 units (total capacity). Rate of A = 60/12 = +5 u/hr. Rate of B = 60/15 = +4 u/hr. Rate of C = 60/20 = -3 u/hr. Combined rate = 5 + 4 - 3 = 6 u/hr. Time = 60 / 6 = 10 hours.",
+      "Incorrect: Check combined flow rate arithmetic.",
+      "Incorrect: Re-verify pipe C's emptying subtraction.",
+      "Incorrect: Review total capacity calculation."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Use the LCM method for total tank volume."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "LCM(12, 15, 20) = 60 liters total capacity."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "A fills 5 L/hr, B fills 4 L/hr, C drains 3 L/hr. Net rate = 5 + 4 - 3 = 6 L/hr."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Total time = 60 / 6 = 10 hours."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Standard work equivalence formula: 1/12 + 1/15 - 1/20 = (5 + 4 - 3)/60 = 6/60 = 1/10 per hour, meaning 10 hours."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-apt-permutations",
+    "slug": "aptitude-permutations-vowels-together",
+    "title": "Aptitude: Permutations of 'ENGINEERING'",
+    "difficulty": "Medium",
+    "category": "Aptitude",
+    "subtopic": "Permutations & Combinations",
+    "type": "mcq",
+    "description": "In how many different ways can the letters of the word 'LEADING' be arranged so that the vowels always appear together?",
+    "options": [
+      "360",
+      "720",
+      "1440",
+      "5040"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Remember the vowels themselves can be permuted internally.",
+      "Correct! Word: LEADING (7 letters). Vowels: E, A, I (3 vowels). Consonants: L, D, N, G (4 consonants). Treat the 3 vowels as 1 single block. We have 4 consonants + 1 block = 5 entities, arranged in 5! = 120 ways. The 3 vowels can be arranged amongst themselves in 3! = 6 ways. Total = 120 * 6 = 720 ways.",
+      "Incorrect: Total is 5! * 3! = 120 * 6 = 720.",
+      "Incorrect: 5040 is 7!, which is the unconstrained permutation of all 7 letters."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "When entities must stay together, bundle them into a single super-letter!"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Vowels are E, A, I (3 vowels). Consonants are L, D, N, G (4 letters)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Total blocks = 4 consonants + 1 vowel bundle = 5 units. 5 units arrange in 5! = 120 ways."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Now multiply by internal vowel arrangement: 3! = 6. 120 * 6 = 720."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Bundle method: (N - k + 1)! * k! = (7 - 3 + 1)! * 3! = 5! * 3! = 120 * 6 = 720."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-logic-blood-relations",
+    "slug": "logical-reasoning-blood-relations",
+    "title": "Logical Reasoning: Blood Relations",
+    "difficulty": "Easy",
+    "category": "Logical Reasoning",
+    "subtopic": "Blood Relations",
+    "type": "mcq",
+    "description": "Pointing to a photograph, a woman says: \"He is the only son of the father of my brother.\" How is the person in the photograph related to the woman?",
+    "options": [
+      "Brother",
+      "Father",
+      "Uncle",
+      "Son"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! 'Father of my brother' = the woman's father. 'The only son of the woman's father' = the woman's brother (or herself if male, but she is a woman). Thus, the man in the photograph is her brother.",
+      "Incorrect: Father of her brother is her father, but the statement says 'the only son of her father'.",
+      "Incorrect: Uncle would be her father's brother.",
+      "Incorrect: He is her brother, not her son."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Deconstruct the statement from the end: who is 'the father of my brother'?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "The father of the woman's brother is the woman's own father."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Now substitute: 'He is the only son of [my father]'."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "The only son of her father must be her brother."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Step 1: Brother's father = Father. Step 2: Father's only son = Brother. Answer is Brother."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-logic-seating-arrangement",
+    "slug": "logical-reasoning-circular-seating",
+    "title": "Logical Reasoning: Circular Seating Arrangement",
+    "difficulty": "Medium",
+    "category": "Logical Reasoning",
+    "subtopic": "Puzzles & Arrangements",
+    "type": "mcq",
+    "description": "Six friends (A, B, C, D, E, F) are sitting in a circle facing the center.\n- B is between F and C.\n- A is between E and D.\n- F is to the immediate left of D.\nWho is sitting opposite to A?",
+    "options": [
+      "B",
+      "C",
+      "F",
+      "D"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! Since all face the center, placing D at 12 o'clock means F (to D's immediate left) is at 2 o'clock. Since B is between F and C, C is at 4 o'clock and B is at 3 o'clock. Since A is between E and D, E is at 10 o'clock and A is at 9 o'clock. Thus, sitting opposite A (9 o'clock) is B (3 o'clock).",
+      "Incorrect: C is sitting opposite E.",
+      "Incorrect: F is sitting opposite D.",
+      "Incorrect: D is adjacent to A."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Draw a clock face with 6 positions: 12, 2, 4, 6, 8, 10 o'clock."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Fix D at the top. 'F is to the immediate left of D' (facing center, left is clockwise)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "B is between F and C -> order is D, F, B, C. A is between E and D -> order is C, E, A, D."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Check opposites (separated by 3 seats): D is opposite C? No, D is opposite C/B? Trace carefully: D opposite C? Let's check: 6 positions: pos 1(D), pos 2(F), pos 3(B), pos 4(C), pos 5(E), pos 6(A). Opposites are (1,4), (2,5), (3,6). Pos 3 is B, Pos 6 is A. B is opposite A!"
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Opposite pairs are (D, C), (F, E), and (B, A). Therefore, B sits directly opposite to A."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-cn-osi-layers",
+    "slug": "cn-osi-layers-responsibilities",
+    "title": "Computer Networks: Transport vs Network Layer",
+    "difficulty": "Easy",
+    "category": "Computer Networks",
+    "subtopic": "OSI Reference Model",
+    "type": "mcq",
+    "description": "What is the primary distinction in communication scope between the Network Layer (Layer 3) and the Transport Layer (Layer 4) in the OSI/TCP-IP model?",
+    "options": [
+      "Network layer provides Process-to-Process communication; Transport layer provides Host-to-Host communication",
+      "Network layer provides Host-to-Host delivery (IP routing); Transport layer provides Process-to-Process delivery (Port addressing)",
+      "Network layer handles data encryption; Transport layer handles physical signal transmission",
+      "Network layer is implemented in web browsers; Transport layer is implemented in network cables"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: It is the exact opposite.",
+      "Correct! The Network Layer (IP) is responsible for routing packets between host machines across the internet. The Transport Layer (TCP/UDP) uses port numbers to demultiplex packets to the specific running application process.",
+      "Incorrect: Physical transmission is Layer 1; Encryption is Layer 6 (Presentation) or TLS.",
+      "Incorrect: Network and Transport layers are implemented in the OS kernel networking stack."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "An IP address identifies a machine on the internet. What identifies an application running on that machine?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Port numbers! Ports are used by Layer 4."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Host-to-host is Layer 3 (IP). Process-to-process is Layer 4 (TCP/UDP)."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Demultiplexing socket connections to ports is the core function of the Transport Layer."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Network Layer gets packets to the destination device; Transport Layer delivers segments to the correct application process on that device."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-cn-http-versions",
+    "slug": "cn-http-1-vs-http-2-multiplexing",
+    "title": "Computer Networks: HTTP/1.1 vs HTTP/2 Multiplexing",
+    "difficulty": "Medium",
+    "category": "Computer Networks",
+    "subtopic": "Application Protocols",
+    "type": "mcq",
+    "description": "How does HTTP/2 eliminate the 'Head-of-Line (HoL) Blocking' problem that plagued HTTP/1.1 over a single TCP connection?",
+    "options": [
+      "By replacing TCP with UDP at the transport layer",
+      "By interleaving binary frames from multiple concurrent bidirectional streams over a single shared TCP connection",
+      "By opening 6 separate parallel TCP connections per browser domain",
+      "By completely removing HTTP request and response headers"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: HTTP/3 (QUIC) replaces TCP with UDP, not HTTP/2.",
+      "Correct! HTTP/2 introduces a binary framing layer that splits requests/responses into independent frames tagged with stream IDs, allowing full multiplexing over a single TCP socket.",
+      "Incorrect: Opening 6 connections was the workaround used in HTTP/1.1, which caused resource waste.",
+      "Incorrect: HTTP/2 compresses headers with HPACK; it does not remove them."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "In HTTP/1.1, one slow resource (e.g. large image) blocked all subsequent requests on that connection."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "HTTP/2 breaks requests into binary frames tagged with a stream identifier."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Multiple streams are multiplexed simultaneously across a single TCP connection without waiting for earlier streams to finish."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Note: HTTP/2 solved application HoL blocking, but TCP-level HoL blocking remained until HTTP/3 QUIC."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "HTTP/2 multiplexing enables non-blocking interleaved binary frames over one TCP pipe, drastically improving page load times."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-oop-polymorphism",
+    "slug": "oop-compile-vs-runtime-polymorphism",
+    "title": "OOP: Method Overloading vs Method Overriding",
+    "difficulty": "Easy",
+    "category": "OOP and Programming",
+    "subtopic": "Polymorphism & Inheritance",
+    "type": "mcq",
+    "description": "What is the primary difference between Method Overloading and Method Overriding in Object-Oriented Programming?",
+    "options": [
+      "Overloading is resolved at runtime (dynamic binding); Overriding is resolved at compile time (static binding)",
+      "Overloading occurs within the same class with different method signatures (compile-time); Overriding occurs in a subclass redefining a parent method with the exact same signature (runtime)",
+      "Overriding requires static methods, whereas Overloading requires abstract methods",
+      "Overloading is only permitted in Java, while Overriding is only permitted in C++"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Overloading is compile-time (static); Overriding is runtime (dynamic via vtable).",
+      "Correct! Overloading creates multiple methods in the same scope with different parameters (compile-time polymorphism). Overriding provides a specific implementation in a subclass for a method defined in the parent class (runtime polymorphism).",
+      "Incorrect: Static methods cannot be overridden (they are hidden).",
+      "Incorrect: Both concepts are universal across OOP languages."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Think about when the compiler knows which method to call."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Overloading = same name, different parameters, resolved at compile-time."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Overriding = child class alters behavior of parent method with identical signature, resolved at runtime via dynamic dispatch."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "In Java/C++, runtime overriding relies on virtual tables (vtables)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Compile-time polymorphism (overloading) checks signatures ahead of time; runtime polymorphism (overriding) dynamically dispatches based on the instantiated object's concrete type."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-oop-solid-liskov",
+    "slug": "oop-solid-liskov-substitution",
+    "title": "OOP: Liskov Substitution Principle (LSP)",
+    "difficulty": "Medium",
+    "category": "OOP and Programming",
+    "subtopic": "SOLID Design Principles",
+    "type": "mcq",
+    "description": "Which classic example illustrates a violation of the Liskov Substitution Principle (LSP) in Object-Oriented Design?",
+    "options": [
+      "Creating an Employee class with private fields and public getters/setters",
+      "A Square class inheriting from a Rectangle class, where setting width unexpectedly modifies height",
+      "An Animal interface implemented by Dog and Cat classes",
+      "A DatabaseConnection class using a Singleton pattern"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: That is standard encapsulation.",
+      "Correct! If Square inherits from Rectangle, client code expecting a Rectangle (where width and height can change independently) will break when passing a Square (where setting width must also alter height to maintain square invariants).",
+      "Incorrect: That is standard polymorphic inheritance.",
+      "Incorrect: Singleton is a creational design pattern, unrelated to LSP."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "LSP states: Subtypes must be substitutable for their base types without altering program correctness."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Mathematically, a square is a rectangle. But in object modeling with mutable state, is a Square really substitutable for a Rectangle?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "If `rect.setWidth(5)` breaks the invariant `rect.getHeight()`, code relying on Rectangle fails when passed a Square."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Inheritance models behavioral compatibility, not just mathematical taxonomy."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Violating LSP causes unexpected side effects and brittle type checks (`if (obj instanceof Square)`). Favor composition over incorrect inheritance."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-arch-cache-mapping",
+    "slug": "arch-cache-mapping-associativity",
+    "title": "Computer Architecture: Cache Mapping Architectures",
+    "difficulty": "Medium",
+    "category": "Computer Architecture",
+    "subtopic": "Cache Memory & Hierarchy",
+    "type": "mcq",
+    "description": "Why is an N-way Set-Associative Cache preferred over a Direct-Mapped Cache in modern CPU designs?",
+    "options": [
+      "Direct-mapped caches require significantly more hardware comparators and electrical power",
+      "Set-associative caches drastically reduce Conflict Misses by allowing multiple memory blocks to map into the same set",
+      "Set-associative caches eliminate compulsory (cold) misses completely",
+      "Direct-mapped caches cannot be fabricated on silicon chips"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Direct-mapped caches require only ONE comparator per lookup, making them simpler and lower power.",
+      "Correct! In a direct-mapped cache, if two frequently accessed memory blocks map to the exact same cache line, they continually evict each other (thrashing/conflict misses). An N-way set-associative cache allows N blocks to coexist in the set.",
+      "Incorrect: Compulsory misses occur on the very first access to any block, regardless of associativity.",
+      "Incorrect: Direct-mapped caches are easily fabricated and frequently used in L1 instruction caches."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Think about what happens when two arrays alternate access and map to the exact same cache index."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "In a direct-mapped cache, each block has only 1 possible location. If collision occurs, thrashing happens."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "N-way set associativity provides N slots per set, allowing colliding addresses to reside in cache simultaneously."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Trade-off: N-way set associativity requires N tag comparators and replacement logic (LRU)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Set associativity provides the optimal engineering balance between hit time latency and conflict miss reduction."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-sec-asymmetric",
+    "slug": "sec-symmetric-vs-asymmetric-crypto",
+    "title": "Cybersecurity: Symmetric vs Asymmetric Cryptography",
+    "difficulty": "Easy",
+    "category": "Cybersecurity",
+    "subtopic": "Cryptography Basics",
+    "type": "mcq",
+    "description": "How do modern secure communication protocols (such as HTTPS / TLS) combine Symmetric and Asymmetric cryptography?",
+    "options": [
+      "They encrypt all bulk web data using slow Asymmetric keys (RSA) and use Symmetric keys only for digital signatures",
+      "They use Asymmetric cryptography for the initial handshake to securely exchange a shared session key, then use fast Symmetric cryptography (AES-GCM) to encrypt the actual payload data",
+      "They never use symmetric cryptography because symmetric keys cannot be kept secret",
+      "They use hashing to encrypt data and symmetric keys to decrypt it"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Asymmetric encryption is computationally expensive (orders of magnitude slower) and cannot handle high-throughput bulk data.",
+      "Correct! This is Hybrid Encryption. Asymmetric crypto (RSA/ECC) solves the key distribution problem during the TLS handshake. Once both sides safely establish a shared secret, fast symmetric ciphers (AES-GCM or ChaCha20) encrypt the HTTP traffic.",
+      "Incorrect: Symmetric cryptography is the bedrock of secure data transmission due to hardware acceleration (AES-NI).",
+      "Incorrect: Hashing is a one-way function and cannot be decrypted."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Asymmetric cryptography solves the 'how do two strangers exchange a secret key across the public internet' problem."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Symmetric cryptography is 100x to 1000x faster than asymmetric math."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "TLS uses public/private keys to agree on a temporary session key, then switches to symmetric encryption for streaming data."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "This hybrid pattern gives you both secure key distribution and lightning-fast throughput."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Hybrid encryption combines the key-distribution benefits of asymmetric cryptography with the performance efficiency of symmetric ciphers."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-sec-xss",
+    "slug": "sec-cross-site-scripting-xss",
+    "title": "Cybersecurity: Cross-Site Scripting (XSS) & Defenses",
+    "difficulty": "Medium",
+    "category": "Cybersecurity",
+    "subtopic": "Common Web Vulnerabilities",
+    "type": "mcq",
+    "description": "Which of the following is the most comprehensive and effective defense against Stored Cross-Site Scripting (XSS) in modern web applications?",
+    "options": [
+      "Encrypting all database columns with AES-256",
+      "Context-aware output encoding (escaping) combined with a strict Content Security Policy (CSP)",
+      "Checking if input contains the substring '<script>' using a regex blacklist",
+      "Changing all HTTP request methods from GET to POST"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Encrypting the database does not prevent the browser from executing malicious JavaScript when the data is rendered into the DOM.",
+      "Correct! Context-aware output encoding ensures user input is treated as pure text rather than executable markup. A strict CSP provides defense-in-depth by restricting script execution sources and disallowing inline scripts.",
+      "Incorrect: Blacklisting `<script>` is easily bypassed via `<img src=x onerror=...>`, `<svg onload=...>`, or event handlers.",
+      "Incorrect: POST requests are equally vulnerable to XSS."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Why do attackers succeed in XSS? Because the browser confuses untrusted data with executable code."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Blacklists fail because HTML has hundreds of ways to execute scripts (event handlers, javascript: URIs)."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "The browser must treat data as text (HTML entity escaping / React auto-escaping), and CSP must restrict execution."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Defense-in-depth: Encoding + CSP + HttpOnly cookies."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Context-aware escaping ensures characters like `<`, `>`, `\"`, and `&` cannot alter the DOM structure, while CSP blocks unauthorized execution."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-tech-cap-theorem",
+    "slug": "tech-interview-cap-theorem",
+    "title": "System Design: The CAP Theorem in Distributed Databases",
+    "difficulty": "Medium",
+    "category": "Technical Interview Questions",
+    "subtopic": "Distributed Systems & System Design",
+    "type": "mcq",
+    "description": "According to Eric Brewer's CAP Theorem, when a network partition (P) inevitably occurs in a distributed system, what fundamental trade-off must system architects choose between?",
+    "options": [
+      "CPU Speed vs Memory Size",
+      "Consistency (C) vs Availability (A)",
+      "Encryption (E) vs Compression (C)",
+      "SQL Relational Schema vs NoSQL Documents"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: That is a hardware constraint, not CAP.",
+      "Correct! When network communication between nodes breaks (Partition Tolerance P is mandatory in real networks), the system must choose: either reject writes/reads to guarantee all nodes return identical data (Consistency CP), or accept writes/reads risking stale or divergent data (Availability AP).",
+      "Incorrect: Encryption and compression are serialization concerns.",
+      "Incorrect: Both SQL and NoSQL engines make trade-offs under CAP."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What happens if a network wire between datacenter A and datacenter B is severed?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Can node A know what updates node B received while the connection is down?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "If A continues answering writes, data will diverge (choosing Availability). If A refuses requests until the network recovers, it chooses Consistency."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Partition tolerance P cannot be avoided in distributed physical networks, so the trade-off is always C vs A during partitions."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "PACELC theorem extends this: if Partition (P), choose between Availability (A) and Consistency (C); Else (E), choose between Latency (L) and Consistency (C)."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-tech-caching-strategies",
+    "slug": "tech-interview-caching-strategies",
+    "title": "System Design: Cache-Aside vs Write-Through Caching",
+    "difficulty": "Medium",
+    "category": "Technical Interview Questions",
+    "subtopic": "System Design & Scalability",
+    "type": "mcq",
+    "description": "In high-scale web architecture, how does the 'Cache-Aside' (Lazy Loading) pattern operate during read operations?",
+    "options": [
+      "The application always writes data to the cache first and lets an asynchronous worker persist to the database",
+      "The application reads directly from the cache; on a cache miss, it reads from the database, writes the result to the cache, and returns it to the client",
+      "The database automatically manages cache invalidation via database triggers",
+      "The cache intercepts all network requests before they hit the web server"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: That describes Write-Behind (Write-Back) caching.",
+      "Correct! In Cache-Aside: Application checks cache. If data is found (cache hit), return. If not found (cache miss), query database, store result in cache for future calls, and return to caller.",
+      "Incorrect: Database triggers are rarely used for external caches like Redis due to coupling.",
+      "Incorrect: That describes an edge reverse proxy (e.g. Cloudflare / Varnish CDN)."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Why is Cache-Aside called 'lazy loading'?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Data is only loaded into the cache when it is requested for the first time."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Flow: 1. Read Cache -> 2. Miss? Query DB -> 3. Populate Cache with TTL -> 4. Return data."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Benefit: Cache only holds requested data. Drawback: First request incurs a cache miss latency penalty."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Cache-Aside is resilient to cache crashes (fallback to DB) and memory-efficient, making it the most popular web caching pattern."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-hr-conflict-resolution",
+    "slug": "hr-behavioral-conflict-resolution",
+    "title": "HR & Behavioral: Technical Disagreement in a Team",
+    "difficulty": "Medium",
+    "category": "HR and Behavioral Interview Practice",
+    "subtopic": "Teamwork & Collaboration",
+    "type": "mcq",
+    "description": "When an interviewer asks: 'Describe a situation where you had a strong disagreement with a teammate or senior engineer over an architectural choice. How did you resolve it?' What is the most effective approach to demonstrate engineering maturity?",
+    "options": [
+      "Explain how you proved the other person wrong by arguing loudly until they conceded",
+      "Describe how you depersonalized the debate by agreeing on objective evaluation criteria (benchmarks, latency, maintenance cost), ran a small proof-of-concept (PoC), and committed to the team's final decision",
+      "State that you never have disagreements because you always defer unconditionally to whatever senior engineers decide",
+      "Complain about the teammate's lack of technical knowledge and explain how you bypassed them to report to management"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Demonstrates poor teamwork and emotional volatility.",
+      "Correct! Top interviewers look for collaborative maturity: focusing on objective data over ego, using empirical PoCs/benchmarks, respectful technical discourse, and practicing 'Disagree and Commit'.",
+      "Incorrect: Passive compliance shows lack of critical thinking and engineering ownership.",
+      "Incorrect: Escalating without interpersonal communication demonstrates a toxic team dynamic."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Technical disagreements are normal and healthy in high-performing engineering teams."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "What tool allows engineers to evaluate competing ideas without making it a personal clash?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Data, benchmarks, prototypes, and team consensus."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Highlight the Amazon leadership principle: Have Backbone; Disagree and Commit."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Great candidates show how they listen actively, present evidence calmly, respect differing views, and unite behind the chosen solution."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-hr-weakness-authentic",
+    "slug": "hr-behavioral-authentic-weakness",
+    "title": "HR & Behavioral: Answering 'What is your greatest weakness?'",
+    "difficulty": "Easy",
+    "category": "HR and Behavioral Interview Practice",
+    "subtopic": "Self-Awareness & Growth",
+    "type": "mcq",
+    "description": "When answering 'What is your greatest weakness?' in a placement HR interview, which of the following responses is viewed most favorably by hiring managers?",
+    "options": [
+      "'I am a perfectionist and I just work too hard without sleeping.' (Cliche humble-brag)",
+      "'I have no weaknesses; I can pick up any technology instantly without flaws.'",
+      "Identifying a genuine non-fatal developmental area (e.g. public speaking, over-engineering early prototypes), explaining the self-awareness, and highlighting concrete steps currently being taken to improve",
+      "Admitting a core job-disqualifying trait, such as 'I get bored easily and miss deadlines on core deliverables.'"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Incorrect: Interviewers immediately recognize and deduct points for cliché humble-brags like 'perfectionist'.",
+      "Incorrect: Demonstrates zero self-awareness or humility.",
+      "Correct! Hiring managers look for genuine self-awareness and active growth mindset: identifying a real challenge, taking ownership of it, and implementing actionable routines to overcome it.",
+      "Incorrect: Admitting fatal unreliability disqualifies candidates."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Interviewers do NOT want to hear 'I work too hard'. They want to see honest self-awareness."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Formula: Real Weakness + Self-Discovery + Proactive Action Plan + Measurable Progress."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Example: 'In early projects I tended to over-engineer solutions upfront. I realized this slowed velocity, so now I timebox MVPs and gather peer feedback earlier.'"
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Always emphasize what you are actively DOING about it."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Authentic self-awareness coupled with continuous self-improvement signals coachability and high long-term potential."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-arch-risc-cisc",
+    "slug": "arch-risc-vs-cisc-differences",
+    "title": "Computer Architecture: RISC vs CISC Architecture",
+    "difficulty": "Easy",
+    "category": "Computer Architecture",
+    "subtopic": "CPU Architecture & ISAs",
+    "type": "mcq",
+    "description": "What is the primary design philosophy difference between Reduced Instruction Set Computer (RISC) architectures (e.g. ARM, RISC-V) and Complex Instruction Set Computer (CISC) architectures (e.g. x86)?",
+    "options": [
+      "RISC focuses on simple, single-cycle instructions with a load/store architecture, whereas CISC offers complex, variable-length instructions capable of direct memory operands",
+      "RISC architectures have no registers and operate directly on RAM",
+      "CISC architectures can only execute 8-bit programs",
+      "RISC CPUs consume significantly more electricity than CISC CPUs"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! RISC emphasizes simple, uniform-length instructions that execute in 1 clock cycle using register-to-register operations (load/store). CISC provides complex multi-cycle instructions with rich addressing modes (e.g. ADD directly to memory).",
+      "Incorrect: RISC architectures feature large register files.",
+      "Incorrect: Modern x86 CISC architectures are 64-bit.",
+      "Incorrect: RISC is renowned for energy efficiency in mobile and embedded systems."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Think about the instruction cycle and how instructions access memory."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "In RISC, only explicit LOAD and STORE instructions access main memory."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Uniform instruction lengths simplify CPU pipelining in RISC chips."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "CISC prioritizes compiler simplicity by having single instructions do multiple steps."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "RISC prioritizes hardware simplicity and high clock rates; CISC prioritizes compact binary code size and backward compatibility."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-arch-branch-prediction",
+    "slug": "arch-branch-prediction-hazards",
+    "title": "Computer Architecture: Control Hazards & Dynamic Branch Prediction",
+    "difficulty": "Hard",
+    "category": "Computer Architecture",
+    "subtopic": "Pipelining & Control Hazards",
+    "type": "mcq",
+    "description": "Why do modern deep-pipelined CPUs (e.g. 15+ pipeline stages) rely heavily on 2-Bit Saturating Counter dynamic branch predictors?",
+    "options": [
+      "To eliminate data dependencies between ALU instructions",
+      "Because a single anomalous branch outcome (e.g. exiting the final iteration of a loop) will not immediately flip a strongly-predicted branch state, preventing catastrophic pipeline stalls",
+      "To convert floating point operations into integer instructions",
+      "To bypass L1 cache latency completely"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: That is solved by data forwarding and out-of-order execution.",
+      "Correct! A 1-bit predictor flips prediction on every mispredict (causing 2 mispredicts on every loop: first entry and final exit). A 2-bit counter requires TWO consecutive mispredictions to change state (Strongly Taken -> Weakly Taken -> Weakly Not Taken -> Strongly Not Taken), keeping loop predictions stable.",
+      "Incorrect: Branch predictors do not convert data types.",
+      "Incorrect: Branch prediction determines next instruction fetch address (PC), not cache latency."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Consider a loop that executes 1,000 times. What does a 1-bit predictor do on the 1,000th iteration?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "On the final iteration, it mispredicts and switches state to 'Not Taken'. Next time the loop runs, it mispredicts again!"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "A 2-bit saturating counter introduces hysteresis: one anomalous exit only drops 'Strongly Taken' to 'Weakly Taken'."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Pipeline flushes in 20-stage pipelines waste up to 20 clock cycles per mispredict."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Dynamic 2-bit branch prediction achieves >90% prediction accuracy, shielding deep pipelines from severe branch penalties."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-sec-csrf",
+    "slug": "sec-cross-site-request-forgery-csrf",
+    "title": "Cybersecurity: CSRF Mitigation & SameSite Cookies",
+    "difficulty": "Medium",
+    "category": "Cybersecurity",
+    "subtopic": "Web Security & Authentication",
+    "type": "mcq",
+    "description": "How does setting the cookie attribute `SameSite=Lax` (or `Strict`) prevent Cross-Site Request Forgery (CSRF) attacks?",
+    "options": [
+      "It encrypts the cookie using the user's browser password",
+      "It prevents the browser from automatically sending the session cookie with cross-site state-changing HTTP requests (e.g. POST from attacker.com to bank.com)",
+      "It disables JavaScript execution in the browser tab",
+      "It limits session validity to 5 minutes"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: SameSite is an access policy, not encryption.",
+      "Correct! CSRF relies on the browser automatically attaching authenticated cookies whenever a request is triggered towards bank.com. `SameSite=Lax/Strict` instructs the browser not to send cookies on cross-origin requests, rendering the forged request unauthenticated.",
+      "Incorrect: CSP or sandboxing controls script execution, not SameSite.",
+      "Incorrect: Expiration is controlled by Max-Age or Expires."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Why was CSRF possible in the first place? Browsers sent cookies automatically across domains."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "`SameSite` restricts cookie attachment based on the originating site context."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Under SameSite=Lax, cookies are only sent for same-site requests or top-level GET navigations, blocking third-party forged POSTs."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Combine SameSite with anti-CSRF synchronizer tokens for legacy browser support."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "SameSite cookies fundamentally fix the ambient authority flaw in browser HTTP cookie delivery."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-sec-hashing-salting",
+    "slug": "sec-password-hashing-and-salting",
+    "title": "Cybersecurity: Salted Password Hashing & Bcrypt",
+    "difficulty": "Easy",
+    "category": "Cybersecurity",
+    "subtopic": "Authentication & Password Security",
+    "type": "mcq",
+    "description": "Why is generating a unique, cryptographically random 'Salt' for each password mandatory before hashing, and why is plain SHA-256 unsuitable for storing passwords?",
+    "options": [
+      "Salting makes the hash shorter so it fits into smaller database columns",
+      "Salting prevents precomputed Rainbow Table attacks and ensures two identical passwords produce completely different hashes; plain SHA-256 is too fast and vulnerable to GPU brute-forcing",
+      "Salting allows the server to decrypt the password whenever the user requests a password reset",
+      "SHA-256 is an asymmetric algorithm and requires private keys"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Salt increases hash storage size.",
+      "Correct! Salts defend against precomputed rainbow table dictionaries. Furthermore, standard SHA-256 is engineered for maximum throughput (billions of hashes/sec on consumer GPUs), making brute-forcing trivial. Adaptive algorithms like Bcrypt, Argon2, or PBKDF2 introduce configurable work factors (cost) to thwart brute-force cracking.",
+      "Incorrect: Hashes are one-way and cannot be decrypted.",
+      "Incorrect: SHA-256 is a cryptographic hash function, not asymmetric encryption."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What if 1,000 users have the password 'Password123'? Without salt, their hashes are identical!"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "A salt is a unique random string appended to the password before hashing."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Fast hashing (SHA-256) helps attackers test billions of guesses per second. Slow hashing (Bcrypt/Argon2) throttles guesses."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Always use Argon2id or Bcrypt for credential storage."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Salting neutralizes rainbow tables; computational cost factors neutralize high-speed GPU dictionary attacks."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-tech-rate-limiting",
+    "slug": "tech-interview-rate-limiting-algorithms",
+    "title": "System Design: Token Bucket vs Leaky Bucket Rate Limiting",
+    "difficulty": "Hard",
+    "category": "Technical Interview Questions",
+    "subtopic": "API Gateways & Rate Limiting",
+    "type": "mcq",
+    "description": "When designing an API Gateway rate limiter, why is the 'Token Bucket' algorithm widely preferred over the 'Leaky Bucket' algorithm for consumer-facing REST APIs?",
+    "options": [
+      "Token Bucket enforces zero memory consumption on Redis",
+      "Token Bucket allows a burst of legitimate traffic up to the bucket capacity while maintaining an average rate, whereas Leaky Bucket strictly smooths traffic at a constant outflow rate",
+      "Leaky Bucket cannot handle HTTP POST requests",
+      "Token Bucket operates without requiring timestamps"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Both store minimal state in Redis (tokens + timestamp).",
+      "Correct! Web and mobile apps frequently burst requests on app startup or page loads (e.g. fetching user profile, feed, notifications simultaneously). Token Bucket accommodates bursts up to bucket capacity, whereas Leaky Bucket strictly limits egress rate and drops or delays bursts.",
+      "Incorrect: Leaky bucket works on any HTTP method.",
+      "Incorrect: Token bucket updates tokens based on elapsed timestamp."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What happens when a user opens an app and 5 API calls fire at the same millisecond?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Does the user experience benefit from allowing brief bursts of traffic?"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Token bucket fills tokens at rate R up to max capacity B. If tokens exist, burst succeeds."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Leaky bucket is useful for smoothing traffic into third-party payment APIs that cannot handle any spikes."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Token Bucket provides burst tolerance with predictable average throughput, making it the industry standard for API gateways (e.g. AWS API Gateway, Cloudflare, Stripe)."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-tech-db-sharding",
+    "slug": "tech-interview-database-sharding",
+    "title": "System Design: Database Sharding & Partition Key Selection",
+    "difficulty": "Hard",
+    "category": "Technical Interview Questions",
+    "subtopic": "Database Architecture & Sharding",
+    "type": "mcq",
+    "description": "What is the most severe operational pitfall when choosing a suboptimal Shard Key (Partition Key) in a distributed horizontally-partitioned database?",
+    "options": [
+      "Foreign keys cannot be written in SQL",
+      "Hotspotting (uneven distribution of writes/reads where one node absorbs 90% of traffic) and expensive Cross-Shard Scatter-Gather Queries",
+      "Database backups require 100x more disk space",
+      "All tables must be converted to NoSQL JSON format"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: While foreign keys across shards are discouraged, hotspotting is the critical scalability killer.",
+      "Correct! A bad shard key (like monotonic timestamp or country where 95% of users reside) directs all writes to a single shard (hotspotting). Furthermore, queries lacking the shard key must query every single shard in parallel (scatter-gather), increasing latency and load.",
+      "Incorrect: Storage is distributed proportionately.",
+      "Incorrect: Relational sharded systems (Vitess, Citus) retain SQL tables."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What happens if you shard by 'created_at' timestamp when inserting 10,000 new records per second?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "All current inserts target the shard containing 'today', leaving other shards completely idle!"
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "High cardinality keys (e.g. user_id with consistent hashing) distribute load evenly across all nodes."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Queries that filter by shard key route directly to 1 node (single-shard query)."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Optimal shard keys ensure uniform distribution of both storage and throughput while minimizing expensive cross-shard transactions."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-hr-deadline-pressure",
+    "slug": "hr-behavioral-managing-deadlines-scope",
+    "title": "HR & Behavioral: Managing Tight Deadlines & Scope Creep",
+    "difficulty": "Medium",
+    "category": "HR and Behavioral Interview Practice",
+    "subtopic": "Project Delivery & Stakeholder Communication",
+    "type": "mcq",
+    "description": "During a final interview, a manager asks: 'A product manager requests 3 new features 3 days before your critical sprint release deadline. Delivering everything will force poor code quality and skipped tests. What do you do?'",
+    "options": [
+      "Quietly work 24 hours a day without sleeping and skip all unit tests to ship the code",
+      "Refuse angrily and tell the product manager they do not understand software engineering",
+      "Communicate proactively: explain the trade-offs, present options (ship core MVP on schedule with tests, defer secondary features to Sprint+1, or extend release date with stakeholders), and maintain engineering quality standards",
+      "Deploy unfinished code to production and fix the bugs in front of customers"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Incorrect: Hero burnout and skipping tests creates critical production outages and technical debt.",
+      "Incorrect: Unprofessional and hostile.",
+      "Correct! Professional engineers maintain quality invariants while acting as business partners: transparent communication, triaging Must-Have vs Nice-to-Have scope, and making data-driven delivery agreements.",
+      "Incorrect: Completely unacceptable engineering practice."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Scope, Time, and Quality are the project management triangle. Which one should NOT be compromised?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Never compromise core production stability and tests."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Negotiate scope: identify what MUST ship now and what can follow in a fast-follow release."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Communicate early rather than surprising stakeholders on release day."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Hiring managers look for pragmatic trade-off management, professional boundary setting, and proactive stakeholder communication."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-hr-failure-learning",
+    "slug": "hr-behavioral-project-failure-lessons",
+    "title": "HR & Behavioral: Discussing Past Failures & Learnings",
+    "difficulty": "Medium",
+    "category": "HR and Behavioral Interview Practice",
+    "subtopic": "Accountability & Growth Mindset",
+    "type": "mcq",
+    "description": "When asked: 'Tell me about a project that did not go as planned or a mistake you made. What happened and what did you learn?' What makes an answer outstanding?",
+    "options": [
+      "Claiming you have never made any mistakes because your code is always verified by QA",
+      "Blaming your team members or unstable third-party APIs for everything that went wrong",
+      "Taking personal ownership of the mistake, objectively explaining the root cause, detailing the immediate remediation, and showing what systemic safeguard or process you put in place to ensure it never happens again",
+      "Describing a failure where you walked away and abandoned the project"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Incorrect: Lack of authenticity and maturity.",
+      "Incorrect: Shifting blame is a massive red flag in behavioral interviews.",
+      "Correct! Blameless post-mortem mindset: Ownership + Root Cause Analysis + Remediation + Systemic Safeguards (e.g. automated CI check, monitoring alert, or documentation).",
+      "Incorrect: Shows lack of resilience and accountability."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Every senior engineer has crashed a server or shipped a bug. The question is: how did you respond?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Take ownership without making excuses."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Explain: 1. The situation -> 2. The mistake -> 3. The immediate fix -> 4. The lasting safeguard implemented."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Focus on how the failure made you a stronger engineer."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "True technical maturity lies in learning from failure and implementing automated barriers that protect the entire organization."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-cn-dns-resolution",
+    "slug": "cn-dns-resolution-iterative-recursive",
+    "title": "Computer Networks: DNS Resolution Hierarchy",
+    "difficulty": "Medium",
+    "category": "Computer Networks",
+    "subtopic": "DNS & Name Resolution",
+    "type": "mcq",
+    "description": "During a DNS query for 'api.gyansetu.edu', which entity responds with the authoritative IP address record for the domain?",
+    "options": [
+      "The Root Name Server (.)",
+      "The Top-Level Domain (TLD) Name Server (.edu)",
+      "The Authoritative Name Server for gyansetu.edu",
+      "The user's local operating system hosts file"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Incorrect: Root servers direct the query to the .edu TLD servers.",
+      "Incorrect: The TLD server directs the resolver to the authoritative name server for gyansetu.edu.",
+      "Correct! The Authoritative Name Server holds the actual DNS resource records (A, AAAA, CNAME) configured by the domain owner and returns the final resolved IP address.",
+      "Incorrect: The hosts file is checked locally first, but does not provide authoritative global records."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Trace the chain: Root -> TLD -> Authoritative."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Root servers only know where the TLD (.edu) servers live."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "The .edu TLD server knows the NS records for gyansetu.edu. The gyansetu.edu Authoritative server returns the A record for api.gyansetu.edu."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Recursive resolvers query these authoritative nodes on behalf of the client."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Authoritative DNS servers are the ultimate source of truth for domain name to IP mapping."
+      }
+    ]
+  },
+  {
+    "id": "q-sql-dense-rank-employees",
+    "slug": "sql-window-functions-dense-rank",
+    "title": "SQL: Rank Salaries Using DENSE_RANK()",
+    "difficulty": "Medium",
+    "category": "DBMS and SQL",
+    "subtopic": "Window Functions",
+    "type": "sql",
+    "description": "Given a table `Scores` (id, score), write a SQL query to rank the scores. The scores should be ranked from highest to lowest. If there is a tie between two scores, both should have the same ranking. After a tie, the next ranking number should be the next consecutive integer (no holes in ranking).\n\nReturn the result table ordered by score in descending order.",
+    "schema": "CREATE TABLE Scores (id INT, score DECIMAL(4,2));",
+    "expectedQuery": "SELECT score, DENSE_RANK() OVER (ORDER BY score DESC) AS 'rank' FROM Scores ORDER BY score DESC;",
+    "explanation": "DENSE_RANK() assigns consecutive ranks without gaps when duplicate scores occur, unlike RANK() which skips rank numbers after ties.",
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "What SQL window function ranks rows without skipping numbers after ties?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "DENSE_RANK() produces 1, 2, 2, 3 whereas RANK() produces 1, 2, 2, 4."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Use `DENSE_RANK() OVER (ORDER BY score DESC)`."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Alias the output column as `rank`."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Window functions execute after WHERE/GROUP BY, computing analytic rankings over partition specifications."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-dbms-keys",
+    "slug": "dbms-primary-vs-candidate-keys",
+    "title": "DBMS: Super Key vs Candidate Key vs Primary Key",
+    "difficulty": "Easy",
+    "category": "DBMS and SQL",
+    "subtopic": "Relational Keys & Schema Design",
+    "type": "mcq",
+    "description": "What is the precise definition of a Candidate Key in Relational Database Management Systems?",
+    "options": [
+      "Any set of attributes that contains NULL values",
+      "A Minimal Super Key (a set of attributes that uniquely identifies every tuple, with no redundant attributes)",
+      "A key that references a primary key in another table",
+      "An index created solely on foreign keys"
+    ],
+    "correctOption": 1,
+    "optionExplanations": [
+      "Incorrect: Primary and candidate keys must satisfy entity integrity and cannot contain NULLs.",
+      "Correct! A Super Key uniquely identifies a tuple. A Candidate Key is a minimal super key—meaning removing any single attribute from it destroys uniqueness. The database designer selects one candidate key to become the Primary Key.",
+      "Incorrect: That defines a Foreign Key.",
+      "Incorrect: Keys are logical schema constraints, not physical storage indexes."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "All candidate keys are super keys, but not all super keys are candidate keys."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Think about the word 'minimal'."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Super key = unique identifier. Candidate key = irreducible minimal unique identifier."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "If (ID, Name) is unique, but (ID) alone is also unique, then (ID, Name) is a super key, but only (ID) is a candidate key."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Candidate keys form the pool of eligible minimal keys from which the primary key is chosen."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-apt-number-systems",
+    "slug": "aptitude-number-systems-unit-digit",
+    "title": "Aptitude: Unit Digit of Large Exponents",
+    "difficulty": "Easy",
+    "category": "Aptitude",
+    "subtopic": "Number Systems",
+    "type": "mcq",
+    "description": "What is the unit digit of the expression 7^105?",
+    "options": [
+      "1",
+      "3",
+      "7",
+      "9"
+    ],
+    "correctOption": 2,
+    "optionExplanations": [
+      "Incorrect: 7^4 ends in 1, but 105 mod 4 = 1.",
+      "Incorrect: 7^3 ends in 3.",
+      "Correct! The unit digits of powers of 7 follow a cycle of length 4: 7^1 = 7, 7^2 = 9, 7^3 = 3, 7^4 = 1. Divide exponent by 4: 105 mod 4 = 1. Therefore, the unit digit corresponds to 7^1 = 7.",
+      "Incorrect: 7^2 ends in 9."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Write down the last digit of 7^1, 7^2, 7^3, 7^4, 7^5..."
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Notice the pattern: 7, 9, 3, 1, 7, 9, 3, 1... The cyclicity of 7 is 4."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Calculate the remainder of 105 divided by 4: 105 = 4 * 26 + 1. Remainder is 1."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Since remainder is 1, look at the 1st position in the cycle: 7^1 = 7."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Modular cyclicity is a high-frequency speed math concept in campus placements: 105 ≡ 1 (mod 4) -> 7^105 ≡ 7^1 ≡ 7 (mod 10)."
+      }
+    ]
+  },
+  {
+    "id": "q-mcq-verbal-para-jumbles",
+    "slug": "verbal-para-jumbles-logical-flow",
+    "title": "Verbal Ability: Sentence Rearrangement (Para-Jumbles)",
+    "difficulty": "Medium",
+    "category": "English and Verbal Ability",
+    "subtopic": "Reading Comprehension & Verbal Logic",
+    "type": "mcq",
+    "description": "Rearrange the following sentences into a coherent, logical paragraph:\n\nP: As a result, software developers can build applications without managing physical servers.\nQ: Cloud computing has revolutionized modern enterprise infrastructure.\nR: This paradigm shift drastically reduces time-to-market for early startups.\nS: It provides on-demand access to virtualized computing resources, storage, and networking.\n\nChoose the most coherent sequence:",
+    "options": [
+      "Q - S - P - R",
+      "P - Q - R - S",
+      "S - Q - P - R",
+      "Q - P - R - S"
+    ],
+    "correctOption": 0,
+    "optionExplanations": [
+      "Correct! Q introduces the overarching topic (Cloud computing). S defines what it provides ('It provides on-demand access...'). P explains the direct consequence for engineers ('As a result, software developers...'). R concludes with the broader business impact ('This paradigm shift...'). The logical flow is Q -> S -> P -> R.",
+      "Incorrect: P starts with 'As a result', requiring a preceding cause.",
+      "Incorrect: S starts with the pronoun 'It', requiring Q to define the referent first.",
+      "Incorrect: S logically belongs between Q and P."
+    ],
+    "hintLadder": [
+      {
+        "level": 1,
+        "title": "Level 1 — Gentle Nudge",
+        "content": "Find the introductory sentence: which sentence does not rely on pronouns or connectors?"
+      },
+      {
+        "level": 2,
+        "title": "Level 2 — Approach Hint",
+        "content": "Sentence Q introduces 'Cloud computing'. Sentence S uses the pronoun 'It' to refer to Cloud computing."
+      },
+      {
+        "level": 3,
+        "title": "Level 3 — Step-by-Step Direction",
+        "content": "Sentence P begins with the transitional phrase 'As a result'."
+      },
+      {
+        "level": 4,
+        "title": "Level 4 — Targeted Debugging",
+        "content": "Sequence QS forms a mandatory pair."
+      },
+      {
+        "level": 5,
+        "title": "Level 5 — Detailed Explanation",
+        "content": "Topic Introduction (Q) -> Definition/Mechanism (S) -> Direct Result (P) -> Broad Business Conclusion (R)."
+      }
+    ]
+  }
+];
